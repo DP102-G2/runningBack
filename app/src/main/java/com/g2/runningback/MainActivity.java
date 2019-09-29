@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.option_menu, menu);
         menu.removeItem(R.id.opMain);
+        menu.removeItem(R.id.opLogout);
         return true;
     }
 
