@@ -11,11 +11,15 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
     BottomNavigationView btbar;
+    TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,5 +54,13 @@ public class MainActivity extends AppCompatActivity {
         btbar = findViewById(R.id.Main_btbar);
         NavController navCtr = Navigation.findNavController(MainActivity.this,R.id.Main_fg);
         NavigationUI.setupWithNavController(btbar,navCtr);
+
+        textView = findViewById(R.id.textView);
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this,"Show",Toast.LENGTH_LONG).show();
+            }
+        });
     }
 }
