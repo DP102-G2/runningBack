@@ -3,18 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_navigraph"
-    app:startDestination="@id/loginFragment">
+    app:startDestination="@id/adFragment">
 
     <fragment
         android:id="@+id/adFragment"
         android:name="com.g2.runningback.adFragment"
         android:label="fragment_ad"
         tools:layout="@layout/fragment_ad" />
-    <fragment
-        android:id="@+id/loginFragment"
-        android:name="com.g2.runningback.LoginFragment"
-        android:label="fragment_login"
-        tools:layout="@layout/fragment_login" />
     <fragment
         android:id="@+id/userFragment"
         android:name="com.g2.runningback.UserFragment"
