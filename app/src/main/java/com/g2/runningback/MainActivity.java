@@ -44,7 +44,6 @@ public class MainActivity extends AppCompatActivity {
             case R.id.opAdmin:
                 intent = new Intent(this, AdminActivity.class);
                 startActivity(intent);
-                this.finish();
                 return true;
         }
         return true;

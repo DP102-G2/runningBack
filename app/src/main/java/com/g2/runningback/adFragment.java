@@ -21,7 +21,7 @@ import android.widget.Button;
 public class adFragment extends Fragment {
 
 
-    Button btLgoion;
+    Button adbtLgoion;
     Intent intent;
     Activity activity;
 
@@ -41,8 +41,8 @@ public class adFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        btLgoion = view.findViewById(R.id.btLogin);
-        btLgoion.setOnClickListener(new View.OnClickListener() {
+        adbtLgoion = view.findViewById(R.id.adbtLogin);
+        adbtLgoion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 intent = new Intent(activity, LoginActivity.class);

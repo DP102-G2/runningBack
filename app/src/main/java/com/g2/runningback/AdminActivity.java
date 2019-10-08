@@ -25,11 +25,13 @@ public class AdminActivity extends AppCompatActivity {
         setContentView(R.layout.activity_admin);
     }
 
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.option_menu, menu);
         menu.removeItem(R.id.opAdmin);
+
         return true;
     }
 
