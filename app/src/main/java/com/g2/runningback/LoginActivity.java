@@ -54,6 +54,8 @@ public class LoginActivity extends AppCompatActivity {
                     Login mEmployee = null;
                     try{
                         String result = new CommonTask(url, jsonObject.toString()).execute().get();
+                        Common.showToast(LoginActivity.this,  result);
+
                         mEmployee = new Gson().fromJson(result, Login.class);
                     } catch(Exception e){
                         Log.e(TAG, e.getMessage());
