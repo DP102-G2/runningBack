@@ -1,6 +1,9 @@
 package com.g2.runningback;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -31,7 +34,6 @@ public class LoginActivity extends AppCompatActivity {
         setTitle("登入頁面");
         etId = findViewById(R.id.etId);
         etPassword = findViewById(R.id.etPassword);
-        final TextView tvResult = findViewById(R.id.tvResult);
         loginbtLogin = findViewById(R.id.loginbtLogin);
         loginbtLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,21 +53,30 @@ public class LoginActivity extends AppCompatActivity {
                         return;
                     }
 
-                    Login mEmployee = null;
+                    Login mLogin = null;
                     try{
                         String result = new CommonTask(url, jsonObject.toString()).execute().get();
-                        Common.showToast(LoginActivity.this,  result);
-
-                        mEmployee = new Gson().fromJson(result, Login.class);
+                        mLogin = new Gson().fromJson(result, Login.class);
                     } catch(Exception e){
                         Log.e(TAG, e.getMessage());
                     }
 
-                    if(mEmployee ==null){
-                        tvResult.setText("Login failed");
+                    if(mLogin ==null){
+                        Common.showToast(LoginActivity.this, "Login Failed");
                     }
                     else{
-                        tvResult.setText("Login success");
+                        Common.showToast(LoginActivity.this, "Login Success");
+
+                        SharedPreferences pref = getSharedPreferences("preference",
+                                MODE_PRIVATE);
+
+                        pref.edit()
+                                .putBoolean("isSignIn", true)
+                                .apply();
+
+                        Log.d(TAG, "登入成功，此頁消失");
+                        LoginActivity.this.finish();// finish() 讓視窗（頁面）消失
+
                     }
                 }
             }

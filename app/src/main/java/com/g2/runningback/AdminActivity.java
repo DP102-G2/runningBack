@@ -1,30 +1,43 @@
 package com.g2.runningback;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
+import android.util.AttributeSet;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.SearchView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.NavigationUI;
-
-import com.google.android.material.bottomnavigation.BottomNavigationView;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 public class AdminActivity extends AppCompatActivity {
-    BottomNavigationView btbar;
 
+    private SwipeRefreshLayout swipeRefreshLayout;
+    private RecyclerView rvEmployee;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
-        setTitle("管理會員");
+//        setTitle("帳戶管理");
+//        SearchView searchView = findViewById(R.id.rvEmployee);
+//        swipeRefreshLayout = findViewById(R.id.swipeRefreshLayout);
+//        rvEmployee = findViewById(R.id.rvEmployee);
+
     }
+
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull String name, @NonNull Context context, @NonNull AttributeSet attrs) {
+        return super.onCreateView(name, context, attrs);
+    }
+
 
 
     @Override
