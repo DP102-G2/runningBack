@@ -26,24 +26,24 @@ import static android.content.ContentValues.TAG;
 public class MainActivity extends AppCompatActivity {
     BottomNavigationView btbar;
     Intent intent;
-    @Override
-    protected void onStart() {
-        super.onStart();
-        SharedPreferences pref = getSharedPreferences("preference", MODE_PRIVATE);
-
-        boolean isSignIn = pref.getBoolean("isSignIn", false);
-        if (isSignIn) {
-            setResult(RESULT_OK);
-            Log.d(TAG, "onStart 一開始檢查已登入");
-        } else {
-            pref.edit().putBoolean("isSignIn", false)
-                    .apply();
-            Log.d(TAG, "onStart 一開始檢查未登入");
-            intent = new Intent(MainActivity.this, LoginActivity.class);
-            startActivity(intent);
-
-        }
-    }
+//    @Override
+//    protected void onStart() {
+//        super.onStart();
+//        SharedPreferences pref = getSharedPreferences("preference", MODE_PRIVATE);
+//
+//        boolean isSignIn = pref.getBoolean("isSignIn", false);
+//        if (isSignIn) {
+//            setResult(RESULT_OK);
+//            Log.d(TAG, "onStart 一開始檢查已登入");
+//        } else {
+//            pref.edit().putBoolean("isSignIn", false)
+//                    .apply();
+//            Log.d(TAG, "onStart 一開始檢查未登入");
+//            intent = new Intent(MainActivity.this, LoginActivity.class);
+//            startActivity(intent);
+//
+//        }
+//    }
 
 
     @Override

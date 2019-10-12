@@ -17,28 +17,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 public class AdminActivity extends AppCompatActivity {
-
-    private SwipeRefreshLayout swipeRefreshLayout;
-    private RecyclerView rvEmployee;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
-//        setTitle("帳戶管理");
-//        SearchView searchView = findViewById(R.id.rvEmployee);
-//        swipeRefreshLayout = findViewById(R.id.swipeRefreshLayout);
-//        rvEmployee = findViewById(R.id.rvEmployee);
-
     }
-
-
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull String name, @NonNull Context context, @NonNull AttributeSet attrs) {
-        return super.onCreateView(name, context, attrs);
-    }
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

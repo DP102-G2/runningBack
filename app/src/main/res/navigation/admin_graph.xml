@@ -3,11 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/admin_graph"
-    app:startDestination="@id/manageFragment">
+    app:startDestination="@id/manageListFragment">
 
     <fragment
-        android:id="@+id/manageFragment"
-        android:name="com.g2.runningback.ManageFragment"
-        android:label="fragment_manage"
-        tools:layout="@layout/fragment_manage" />
+        android:id="@+id/manageListFragment"
+        android:name="com.g2.runningback.ManageListFragment"
+        android:label="fragment_manage_list"
+        tools:layout="@layout/fragment_manage_list" >
+        <action
+            android:id="@+id/action_manageListFragment_to_manageInsertFragment"
+            app:destination="@id/manageInsertFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/manageInsertFragment"
+        android:name="com.g2.runningback.ManageInsertFragment"
+        android:label="fragment_manage_insert"
+        tools:layout="@layout/fragment_manage_insert" />
 </navigation>
