@@ -13,10 +13,18 @@
         <action
             android:id="@+id/action_manageListFragment_to_manageInsertFragment"
             app:destination="@id/manageInsertFragment" />
+        <action
+            android:id="@+id/action_manageListFragment_to_manageUpdateFragment"
+            app:destination="@id/manageUpdateFragment" />
     </fragment>
     <fragment
         android:id="@+id/manageInsertFragment"
         android:name="com.g2.runningback.ManageInsertFragment"
         android:label="fragment_manage_insert"
         tools:layout="@layout/fragment_manage_insert" />
+    <fragment
+        android:id="@+id/manageUpdateFragment"
+        android:name="com.g2.runningback.ManageUpdateFragment"
+        android:label="fragment_manage_update"
+        tools:layout="@layout/fragment_manage_update" />
 </navigation>

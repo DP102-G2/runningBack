@@ -10,32 +10,33 @@
         android:id="@+id/loginbtLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="37dp"
+        android:layout_marginStart="161dp"
+        android:layout_marginTop="53dp"
         android:text="確認"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/loginetPassword" />
 
     <EditText
-        android:id="@+id/etId"
+        android:id="@+id/loginetId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="99dp"
+        android:layout_marginTop="11dp"
+        android:layout_marginEnd="99dp"
         android:ems="10"
         android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="@+id/etPassword"
-        app:layout_constraintStart_toStartOf="@+id/etPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/login_id" />
 
     <EditText
-        android:id="@+id/etPassword"
+        android:id="@+id/loginetPassword"
         android:layout_width="220dp"
         android:layout_height="43dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginStart="99dp"
+        android:layout_marginTop="23dp"
         android:ems="10"
         android:inputType="textPassword"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.539"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
@@ -44,12 +45,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="103dp"
-        android:layout_marginTop="22dp"
-        android:layout_marginEnd="280dp"
+        android:layout_marginTop="24dp"
         android:text="密碼"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etId" />
+        app:layout_constraintTop_toBottomOf="@+id/loginetId" />
 
     <TextView
         android:id="@+id/login_id"

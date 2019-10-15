@@ -2,25 +2,29 @@ package com.g2.runningback;
 
 import java.io.Serializable;
 
-public class Employee implements Serializable {
+public class Manage implements Serializable {
 
     private String emp_no;
     private String emp_name;
     private String emp_pw;
     private String emp_id;
-    private String emp_job;
+    private String job_no;
+    private String job_name;
 
-    public Employee(String emp_no, String emp_name, String emp_pw, String emp_id, String emp_job) {
+    public Manage(String emp_no, String emp_name, String emp_id,String emp_pw, String job_no) {
         this.emp_no = emp_no;
         this.emp_name = emp_name;
         this.emp_pw = emp_pw;
         this.emp_id = emp_id;
-        this.emp_job = emp_job;
+        this.job_no = job_no;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        return this.emp_id == ((Employee) obj).emp_id;
+    public String getJob_name() {
+        return job_name;
+    }
+
+    public void setJob_name(String job_name) {
+        this.job_name = job_name;
     }
 
     public String getEmp_no() {
@@ -55,11 +59,11 @@ public class Employee implements Serializable {
         this.emp_id = emp_id;
     }
 
-    public String getEmp_job() {
-        return emp_job;
+    public String getJob_no() {
+        return job_no;
     }
 
-    public void setEmp_job(String emp_job) {
-        this.emp_job = emp_job;
+    public void setJob_no(String job_no) {
+        this.job_no = job_no;
     }
 }

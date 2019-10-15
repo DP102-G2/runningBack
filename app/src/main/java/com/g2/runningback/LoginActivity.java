@@ -32,8 +32,8 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         setTitle("登入頁面");
-        etId = findViewById(R.id.etId);
-        etPassword = findViewById(R.id.etPassword);
+        etId = findViewById(R.id.loginetId);
+        etPassword = findViewById(R.id.loginetPassword);
         loginbtLogin = findViewById(R.id.loginbtLogin);
         loginbtLogin.setOnClickListener(new View.OnClickListener() {
             @Override
