@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ManageInsertFragment">
+
+    <Button
+        android:id="@+id/updatebtDelete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="39dp"
+        android:layout_marginTop="39dp"
+        android:layout_marginEnd="111dp"
+        android:text="取消"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/insertbtConfirm"
+        app:layout_constraintTop_toBottomOf="@+id/insertspJob" />
+
+    <Button
+        android:id="@+id/insertbtConfirm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="85dp"
+        android:layout_marginTop="39dp"
+        android:layout_marginEnd="39dp"
+        android:text="確認"
+        app:layout_constraintEnd_toStartOf="@+id/updatebtDelete"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/insertspJob" />
+
+    <EditText
+        android:id="@+id/insertetNo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="85dp"
+        android:layout_marginTop="12dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/insertno" />
+
+    <EditText
+        android:id="@+id/insertetName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="85dp"
+        android:layout_marginTop="14dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/insertname" />
+
+    <EditText
+        android:id="@+id/insertetId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="85dp"
+        android:layout_marginTop="18dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/insertid" />
+
+    <EditText
+        android:id="@+id/insertetpassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="85dp"
+        android:layout_marginTop="10dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/insertpw" />
+
+    <Spinner
+        android:id="@+id/insertspJob"
+        android:layout_width="215dp"
+        android:layout_height="23dp"
+        android:layout_marginStart="85dp"
+        android:layout_marginTop="18dp"
+        android:entries="@array/employeejob"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/insertjob" />
+
+    <TextView
+        android:id="@+id/insertno"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="85dp"
+        android:layout_marginTop="35dp"
+        android:text="員工編號"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/insertname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="21dp"
+        android:text="員工姓名"
+        app:layout_constraintEnd_toEndOf="@+id/updateno"
+        app:layout_constraintStart_toStartOf="@+id/insertno"
+        app:layout_constraintTop_toBottomOf="@+id/insertetNo" />
+
+    <TextView
+        android:id="@+id/insertid"
+        android:layout_width="wrap_content"
+        android:layout_height="19dp"
+        android:layout_marginTop="17dp"
+        android:text="員工帳號"
+        app:layout_constraintStart_toStartOf="@+id/insertname"
+        app:layout_constraintTop_toBottomOf="@+id/insertetName" />
+
+    <TextView
+        android:id="@+id/insertpw"
+        android:layout_width="wrap_content"
+        android:layout_height="19dp"
+        android:layout_marginStart="85dp"
+        android:layout_marginTop="14dp"
+        android:text="員工密碼"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/insertetId" />
+
+    <TextView
+        android:id="@+id/insertjob"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="85dp"
+        android:layout_marginTop="26dp"
+        android:text="員工職務"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/insertetpassword" />
+</androidx.constraintlayout.widget.ConstraintLayout>

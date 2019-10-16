@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="employeejob">
+        Employeejob
+        <item>管理員</item>
+        <item>客服</item>
+        <item>商品部</item>
+    </string-array>
+
+</resources>
