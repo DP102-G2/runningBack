@@ -2,8 +2,10 @@ package com.g2.runningback;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -15,6 +17,10 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
+import com.g2.runningback.Common.Common;
+
+import static android.content.ContentValues.TAG;
 
 public class AdminActivity extends AppCompatActivity {
     @Override
@@ -41,8 +47,31 @@ public class AdminActivity extends AppCompatActivity {
                 startActivity(intent);
                 this.finish();
                 return true;
+
+            case R.id.opLogout:
+                SharedPreferences pref = getSharedPreferences("preference",
+                        MODE_PRIVATE);
+                pref.edit().putBoolean("isSignIn", false).apply();
+                Log.d(TAG, "AdminActivity 已登出");
+                intent = new Intent(AdminActivity.this, LoginActivity.class);
+                startActivity(intent);
+                return true;
         }
         return true;
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        // 從偏好設定檔中取得登入狀態來決定是否顯示「登出」
+        SharedPreferences pref = getSharedPreferences("preference", MODE_PRIVATE);
+        boolean login = pref.getBoolean("isSignIn", false);
+        if (!login) {
+            Log.d(TAG, "AdminActivity onResume 一開始檢查未登入");
+            Intent intent = new Intent(AdminActivity.this, LoginActivity.class);
+            startActivity(intent);
+        }
+    }
+
 
 }

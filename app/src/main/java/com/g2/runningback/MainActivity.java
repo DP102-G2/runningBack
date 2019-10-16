@@ -14,9 +14,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.g2.runningback.Common.Common;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -26,12 +23,13 @@ import static android.content.ContentValues.TAG;
 public class MainActivity extends AppCompatActivity {
     BottomNavigationView btbar;
     Intent intent;
-//    @Override
-//    protected void onStart() {
-//        super.onStart();
+    @Override
+    protected void onStart() {
+        super.onStart();
 //        SharedPreferences pref = getSharedPreferences("preference", MODE_PRIVATE);
 //
 //        boolean isSignIn = pref.getBoolean("isSignIn", false);
+//        Log.d(TAG, "onStart 的isSignIn前");
 //        if (isSignIn) {
 //            setResult(RESULT_OK);
 //            Log.d(TAG, "onStart 一開始檢查已登入");
@@ -41,10 +39,22 @@ public class MainActivity extends AppCompatActivity {
 //            Log.d(TAG, "onStart 一開始檢查未登入");
 //            intent = new Intent(MainActivity.this, LoginActivity.class);
 //            startActivity(intent);
-//
 //        }
-//    }
+    }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        // 從偏好設定檔中取得登入狀態來決定是否顯示「登出」
+        SharedPreferences pref = getSharedPreferences("preference", MODE_PRIVATE);
+        boolean login = pref.getBoolean("isSignIn", false);
+        Log.d(TAG, "Main Activity onResume 的isSignIn前");
+        if (!login) {
+            Log.d(TAG, "Main Activity onResume 一開始檢查未登入");
+            intent = new Intent(MainActivity.this, LoginActivity.class);
+            startActivity(intent);
+            }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
