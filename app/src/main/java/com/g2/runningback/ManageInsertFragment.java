@@ -105,14 +105,14 @@ public class ManageInsertFragment extends Fragment {
                         Log.e(TAG, e.toString());
                     }
                     if (count == 0) {
-                        Common.showToast(getActivity(), "insert fail");
+                        Common.showToast(getActivity(), "新增失敗或帳號重複");
                     } else {
-                        Common.showToast(getActivity(), "insert success");
+                        Common.showToast(getActivity(), "新增成功");
                         /* 回前一個Fragment */
                         navController.popBackStack();
                     }
                 } else {
-                    Common.showToast(getActivity(), "no network");
+                    Common.showToast(getActivity(), "沒網路");
                 }
 
 

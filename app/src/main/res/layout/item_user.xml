@@ -16,27 +16,27 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/tvuser_no"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="EmpNo"
-                android:textColor="#000000"
-                android:textSize="14sp"
-                card_view:layout_constraintStart_toStartOf="parent"
-                card_view:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/tvuser_no"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="UserNo"
+        android:textColor="#000000"
+        android:textSize="14sp"
+        card_view:layout_constraintStart_toStartOf="parent"
+        card_view:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/tvuser_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/tvuser_no"
-                android:layout_alignStart="@id/tvuser_no"
-                android:layout_marginStart="90dp"
-                android:text="EmpName"
-                android:textColor="#000000"
-                card_view:layout_constraintStart_toEndOf="@+id/tvuser_no"
-                card_view:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/tvuser_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvuser_no"
+        android:layout_alignStart="@id/tvuser_no"
+        android:layout_marginStart="90dp"
+        android:text="UserName"
+        android:textColor="#000000"
+        card_view:layout_constraintStart_toEndOf="@+id/tvuser_no"
+        card_view:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

@@ -13,9 +13,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-
-import com.g2.runningback.Common.Common;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import static android.content.ContentValues.TAG;
