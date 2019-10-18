@@ -6,4 +6,21 @@
     <string name="textUpdate">修改</string>
     <string name="textDelete">刪除</string>
 
+
+    <string name="productmanagment">商品管裡</string>
+    <string name="textDeleteFail">刪除商品失敗</string>
+    <string name="textDeleteSuccess">刪除商品成功</string>
+    <string name="textNoNetwork">沒有網路</string>
+    <string name="textNoProductsFound">找不到商品資訊</string>
+    <string name="btAdProduct">主廣告</string>
+    <string name="btPromotionPrpduct">每日好康</string>
+    <string name="btAdproductsubmit">確認</string>
+    <string name="btupdateproduct">修改</string>
+    <string name="btcancelproduct">取消</string>
+    <string name="AdProductManagment">管理廣告</string>
+    <string name="textNameIsInvalid">無效名稱</string>
+    <string name="textUpdateFail">修改失敗</string>
+    <string name="textUpdateSuccess">修改成功</string>
+    <string name="product_no">商品編號</string>
+
 </resources>
