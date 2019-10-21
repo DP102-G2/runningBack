@@ -25,7 +25,7 @@
         android:text="連結商品" />
 
     <EditText
-        android:id="@+id/pro_no"
+        android:id="@+id/proItem_tvNo"
         android:layout_width="240dp"
         android:layout_height="35dp"
         android:layout_gravity="center"

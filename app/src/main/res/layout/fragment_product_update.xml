@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".prod.ProductUpdateFragment" >
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <EditText
+                    android:id="@+id/proUpdate_etStock"
+                    android:layout_width="240dp"
+                    android:layout_height="35dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/sreach_style"
+                    android:paddingLeft="5dp"
+                    android:text="0"
+                    app:layout_constraintStart_toStartOf="@+id/textView32"
+                    app:layout_constraintTop_toBottomOf="@+id/textView32" />
+
+                <TextView
+                    android:id="@+id/textView14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="副標題"
+                    app:layout_constraintStart_toStartOf="@+id/textView8"
+                    app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+                <EditText
+                    android:id="@+id/proUpdate_etInfo"
+                    android:layout_width="240dp"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/sreach_style"
+                    android:hint="請輸入商品介紹"
+                    app:layout_constraintStart_toStartOf="@+id/textView11"
+                    app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+                <TextView
+                    android:id="@+id/textView11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="商品簡介"
+                    app:layout_constraintStart_toStartOf="@+id/proUpdate_etPrice"
+                    app:layout_constraintTop_toBottomOf="@+id/proUpdate_etPrice" />
+
+                <TextView
+                    android:id="@+id/textView8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="是否上架"
+                    app:layout_constraintStart_toStartOf="@+id/proUpdate_tvName"
+                    app:layout_constraintTop_toBottomOf="@+id/proUpdate_tvName" />
+
+                <Switch
+                    android:id="@+id/proUpdate_swSale"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView8"
+                    app:layout_constraintEnd_toEndOf="@+id/proUpdate_tvName"
+                    app:layout_constraintTop_toTopOf="@+id/textView8" />
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="84dp"
+                    android:layout_marginTop="16dp"
+                    android:text="編號"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/proUpdate_tvCateNo" />
+
+                <TextView
+                    android:id="@+id/proUpdate_tvCateNo"
+                    android:layout_width="240dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="13dp"
+                    android:paddingLeft="5dp"
+                    android:text="TextView"
+                    android:textSize="20sp"
+                    app:layout_constraintStart_toStartOf="@+id/textView17"
+                    app:layout_constraintTop_toBottomOf="@+id/textView17" />
+
+                <TextView
+                    android:id="@+id/textView17"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="84dp"
+                    android:layout_marginTop="24dp"
+                    android:text="類別名稱"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/proUpdate_tvNo"
+                    android:layout_width="240dp"
+                    android:layout_height="35dp"
+                    android:layout_marginTop="16dp"
+                    android:paddingLeft="5dp"
+                    android:text="TextView"
+                    android:textSize="20sp"
+                    app:layout_constraintStart_toStartOf="@+id/textView"
+                    app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+                <TextView
+                    android:id="@+id/textView30"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="名稱"
+                    app:layout_constraintStart_toStartOf="@+id/proUpdate_tvNo"
+                    app:layout_constraintTop_toBottomOf="@+id/proUpdate_tvNo" />
+
+                <EditText
+                    android:id="@+id/proUpdate_tvName"
+                    android:layout_width="240dp"
+                    android:layout_height="35dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/sreach_style"
+                    android:paddingLeft="5dp"
+                    android:text="TextView"
+                    app:layout_constraintStart_toStartOf="@+id/textView30"
+                    app:layout_constraintTop_toBottomOf="@+id/textView30" />
+
+                <EditText
+                    android:id="@+id/proUpdate_etPrice"
+                    android:layout_width="240dp"
+                    android:layout_height="35dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/sreach_style"
+                    android:inputType="number"
+                    android:paddingLeft="5dp"
+                    android:text="0"
+                    app:layout_constraintStart_toStartOf="@+id/textView3"
+                    app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+                <EditText
+                    android:id="@+id/proUpdate_tvDesc"
+                    android:layout_width="240dp"
+                    android:layout_height="35dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/sreach_style"
+                    android:inputType="number"
+                    android:paddingLeft="5dp"
+                    android:text="TextView"
+                    app:layout_constraintStart_toStartOf="@+id/textView14"
+                    app:layout_constraintTop_toBottomOf="@+id/textView14" />
+
+                <TextView
+                    android:id="@+id/textView32"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="庫存"
+                    app:layout_constraintStart_toStartOf="@+id/proUpdate_tvDesc"
+                    app:layout_constraintTop_toBottomOf="@+id/proUpdate_tvDesc" />
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="31dp"
+                    android:layout_height="19dp"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginTop="16dp"
+                    android:text="售價"
+                    app:layout_constraintStart_toStartOf="@+id/proUpdate_etStock"
+                    app:layout_constraintTop_toBottomOf="@+id/proUpdate_etStock" />
+
+                <Button
+                    android:id="@+id/btupdateproduct"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="14dp"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginBottom="60dp"
+                    android:background="@drawable/bt_style"
+                    android:text="@string/btupdateproduct"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/proUpdate_etInfo"
+                    app:layout_constraintTop_toBottomOf="@+id/proUpdate_etInfo"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <Button
+                    android:id="@+id/btcancelproduct"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="36dp"
+                    android:background="@drawable/bt_style"
+                    android:text="@string/btcancelproduct"
+                    android:textColor="#000000"
+                    app:layout_constraintStart_toEndOf="@+id/btupdateproduct"
+                    app:layout_constraintTop_toTopOf="@+id/btupdateproduct" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+    </ScrollView>
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,7 +3,6 @@ package com.g2.runningback;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -20,7 +19,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.g2.runningback.Common.Common;
 import com.g2.runningback.Common.CommonTask;
@@ -30,7 +28,6 @@ import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
-import java.util.ArrayList;
 import java.util.List;
 
 import static android.content.ContentValues.TAG;
@@ -103,7 +100,7 @@ public class AdFragment extends Fragment {
 
             MyViewHolder(View itemView) {
                 super(itemView);
-                pro_no = itemView.findViewById(R.id.pro_no);
+                pro_no = itemView.findViewById(R.id.proItem_tvNo);
                 ad_image = itemView.findViewById(R.id.ad_image);
             }
         }

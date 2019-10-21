@@ -1,24 +1,19 @@
-package com.g2.runningback;
+package com.g2.runningback.Admin;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.AttributeSet;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.SearchView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import com.g2.runningback.Common.Common;
+import com.g2.runningback.LoginActivity;
+import com.g2.runningback.MainActivity;
+import com.g2.runningback.R;
 
 import static android.content.ContentValues.TAG;
 

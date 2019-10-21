@@ -95,7 +95,7 @@ public class PromotionFragment extends Fragment {
 
             MyViewHolder(View itemView) {
                 super(itemView);
-                pro_no = itemView.findViewById(R.id.pro_no);
+                pro_no = itemView.findViewById(R.id.proItem_tvNo);
             }
         }
 

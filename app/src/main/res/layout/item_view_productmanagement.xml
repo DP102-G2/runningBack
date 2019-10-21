@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="300dp"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="40dp"
     android:layout_margin="8dp"
     android:foreground="?selectableItemBackground"
@@ -11,35 +12,58 @@
     app:cardElevation="6dp">
 
 
-    <LinearLayout
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/pro_no"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
+            android:id="@+id/proItem_tvNo"
+            android:layout_width="80dp"
+            android:layout_height="38dp"
+            android:layout_marginStart="16dp"
             android:gravity="left"
             android:paddingVertical="8dp"
             android:text="TextView"
-            android:textSize="17sp" />
+            android:textSize="17sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/proItem_tvetName"
+            app:layout_constraintEnd_toStartOf="@+id/proItem_tvetName"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
-            android:id="@+id/pro_name"
-            android:layout_width="100dp"
+            android:id="@+id/proItem_tvetName"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="TextView"
-            android:textSize="17sp" />
+            android:textSize="17sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/proItem_tvDesc"
+            app:layout_constraintStart_toEndOf="@+id/proItem_tvNo"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/pro_stock"
-            android:layout_width="100dp"
+            android:id="@+id/proItem_tvDesc"
+            android:layout_width="50dp"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
             android:gravity="center"
-            android:text="TextView"
-            android:textSize="17sp" />
+            app:layout_constraintBaseline_toBaselineOf="@+id/proItem_tvetName"
+            app:layout_constraintEnd_toStartOf="@+id/proItem_tvSale"
+            app:layout_constraintStart_toEndOf="@+id/proItem_tvetName"
+            tools:text="tv" />
 
-    </LinearLayout>
+        <TextView
+            android:id="@+id/proItem_tvSale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:text="TextView"
+            app:layout_constraintBottom_toBottomOf="@+id/proItem_tvDesc"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/proItem_tvDesc"
+            app:layout_constraintTop_toTopOf="@+id/proItem_tvDesc" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>

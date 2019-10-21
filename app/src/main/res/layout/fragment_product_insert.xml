@@ -8,17 +8,14 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".NewproductFragment">
-
-
-
+        tools:context=".prod.ProductInsertFragment">
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/ispro_ivMain"
             android:layout_width="250dp"
             android:layout_height="250dp"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="32dp"
             android:layout_marginEnd="32dp"
             android:src="@drawable/ic_user"
             app:layout_constraintEnd_toEndOf="parent"
@@ -26,33 +23,33 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/ispro_ivOne"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginTop="16dp"
             android:src="@drawable/ic_user"
-            app:layout_constraintStart_toStartOf="@+id/imageView"
-            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+            app:layout_constraintStart_toStartOf="@+id/ispro_ivMain"
+            app:layout_constraintTop_toBottomOf="@+id/ispro_ivMain" />
 
         <ImageView
-            android:id="@+id/imageView3"
+            android:id="@+id/ispro_ivTwo"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginTop="16dp"
             android:src="@drawable/ic_user"
-            app:layout_constraintEnd_toStartOf="@+id/imageView4"
+            app:layout_constraintEnd_toStartOf="@+id/ispro_ivThree"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/imageView2"
-            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+            app:layout_constraintStart_toEndOf="@+id/ispro_ivOne"
+            app:layout_constraintTop_toBottomOf="@+id/ispro_ivMain" />
 
         <ImageView
-            android:id="@+id/imageView4"
+            android:id="@+id/ispro_ivThree"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginTop="16dp"
             android:src="@drawable/ic_user"
-            app:layout_constraintEnd_toEndOf="@+id/imageView"
-            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+            app:layout_constraintEnd_toEndOf="@+id/ispro_ivMain"
+            app:layout_constraintTop_toBottomOf="@+id/ispro_ivMain" />
 
         <TextView
             android:id="@+id/textView7"
@@ -60,15 +57,15 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:text="商品編號"
-            app:layout_constraintStart_toStartOf="@+id/imageView2"
-            app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+            app:layout_constraintStart_toStartOf="@+id/ispro_ivOne"
+            app:layout_constraintTop_toBottomOf="@+id/ispro_ivOne" />
 
-        <TextView
-            android:id="@+id/textView8"
+        <EditText
+            android:id="@+id/ispro_etProNo"
             android:layout_width="240dp"
             android:layout_height="35dp"
             android:layout_marginTop="16dp"
-            android:text="TextView"
+            android:hint=" 請輸入商品編號"
             android:background="@drawable/sreach_style"
             app:layout_constraintStart_toStartOf="@+id/textView7"
             app:layout_constraintTop_toBottomOf="@+id/textView7" />
@@ -80,8 +77,8 @@
             android:text="＊必填"
             android:textColor="#F44336"
             android:textSize="10sp"
-            app:layout_constraintStart_toStartOf="@+id/textView8"
-            app:layout_constraintTop_toBottomOf="@+id/textView8" />
+            app:layout_constraintStart_toStartOf="@+id/ispro_etProNo"
+            app:layout_constraintTop_toBottomOf="@+id/ispro_etProNo" />
 
         <TextView
             android:id="@+id/textView10"
@@ -92,12 +89,13 @@
             app:layout_constraintStart_toStartOf="@+id/textView9"
             app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
-        <TextView
-            android:id="@+id/textView11"
+        <AutoCompleteTextView
+            android:id="@+id/ispro_etProCat"
             android:layout_width="240dp"
             android:layout_height="35dp"
             android:layout_marginTop="16dp"
-            android:text="TextView"
+            android:hint="  請輸入商品類別"
+            android:completionThreshold="1"
             android:background="@drawable/sreach_style"
             app:layout_constraintStart_toStartOf="@+id/textView10"
             app:layout_constraintTop_toBottomOf="@+id/textView10" />
@@ -109,8 +107,8 @@
             android:text="＊必填"
             android:textColor="#F44336"
             android:textSize="10sp"
-            app:layout_constraintStart_toStartOf="@+id/textView11"
-            app:layout_constraintTop_toBottomOf="@+id/textView11" />
+            app:layout_constraintStart_toStartOf="@+id/ispro_etProCat"
+            app:layout_constraintTop_toBottomOf="@+id/ispro_etProCat" />
 
         <TextView
             android:id="@+id/textView13"
@@ -121,12 +119,12 @@
             app:layout_constraintStart_toStartOf="@+id/textView12"
             app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
-        <TextView
-            android:id="@+id/textView14"
+        <EditText
+            android:id="@+id/ispro_etProName"
             android:layout_width="240dp"
             android:layout_height="35dp"
             android:layout_marginTop="16dp"
-            android:text="TextView"
+            android:hint="  請輸入商品名稱"
             android:background="@drawable/sreach_style"
             app:layout_constraintStart_toStartOf="@+id/textView13"
             app:layout_constraintTop_toBottomOf="@+id/textView13" />
@@ -138,8 +136,8 @@
             android:text="＊必填"
             android:textColor="#F44336"
             android:textSize="10sp"
-            app:layout_constraintStart_toStartOf="@+id/textView14"
-            app:layout_constraintTop_toBottomOf="@+id/textView14" />
+            app:layout_constraintStart_toStartOf="@+id/ispro_etProName"
+            app:layout_constraintTop_toBottomOf="@+id/ispro_etProName" />
 
         <TextView
             android:id="@+id/textView16"
@@ -150,13 +148,13 @@
             app:layout_constraintStart_toStartOf="@+id/textView15"
             app:layout_constraintTop_toBottomOf="@+id/textView15" />
 
-        <TextView
-            android:id="@+id/textView17"
+        <EditText
+            android:id="@+id/ispro_etProDesc"
             android:layout_width="240dp"
             android:layout_height="35dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/sreach_style"
-            android:text="TextView"
+            android:hint="  請輸入商品副標題"
             app:layout_constraintStart_toStartOf="@+id/textView16"
             app:layout_constraintTop_toBottomOf="@+id/textView16" />
 
@@ -167,18 +165,18 @@
             android:text="＊必填"
             android:textColor="#F44336"
             android:textSize="10sp"
-            app:layout_constraintStart_toStartOf="@+id/textView17"
-            app:layout_constraintTop_toBottomOf="@+id/textView17" />
+            app:layout_constraintStart_toStartOf="@+id/ispro_etProDesc"
+            app:layout_constraintTop_toBottomOf="@+id/ispro_etProDesc" />
 
         <Button
-            android:id="@+id/btnewproductnext"
+            android:id="@+id/ispro_btNextPage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:background="@drawable/bt_style"
             android:text="下一步"
-            app:layout_constraintEnd_toEndOf="@+id/textView17"
-            app:layout_constraintStart_toStartOf="@+id/textView17"
+            app:layout_constraintEnd_toEndOf="@+id/ispro_etProDesc"
+            app:layout_constraintStart_toStartOf="@+id/ispro_etProDesc"
             app:layout_constraintTop_toBottomOf="@+id/textView18" />
 
 

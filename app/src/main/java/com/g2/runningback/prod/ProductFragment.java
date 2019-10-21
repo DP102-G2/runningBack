@@ -1,8 +1,9 @@
-package com.g2.runningback;
+package com.g2.runningback.prod;
 
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,20 +14,17 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.PopupMenu;
 import android.widget.SearchView;
 import android.widget.TextView;
 
 import com.g2.runningback.Common.Common;
 import com.g2.runningback.Common.CommonTask;
 import com.g2.runningback.Common.ImageTask;
+import com.g2.runningback.R;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
@@ -45,6 +43,8 @@ public class ProductFragment extends Fragment {
     private ImageTask productImageTask;
     private CommonTask productDeleteTask;
     private static final String TAG = "TAG_ProductFragment";
+    private static final String url = Common.URL_SERVER + "/ProductServlet";
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -64,8 +64,8 @@ public class ProductFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        searchView = view.findViewById(R.id.searchView);
-        recyclerView = view.findViewById(R.id.rvproduct);
+        searchView = view.findViewById(R.id.pro_sv);
+        recyclerView = view.findViewById(R.id.pro_rvproduct);
         recyclerView.setLayoutManager(new LinearLayoutManager(activity));
         recyclerView.setAdapter(new ProductAdapter(activity, products));
 
@@ -85,7 +85,7 @@ public class ProductFragment extends Fragment {
                         List<Product> searchProducts = new ArrayList<>();
                         // 搜尋原始資料內有無包含關鍵字(不區別大小寫)
                         for (Product product : products) {
-                            if (product.getPro_no().toUpperCase().contains(newText.toUpperCase())) {
+                            if (product.pro_name.toUpperCase().contains(newText.toUpperCase())) {
                                 searchProducts.add(product);
                             }
                         }
@@ -103,11 +103,11 @@ public class ProductFragment extends Fragment {
             }
         });
 
-        ImageView ivproductadd = view.findViewById(R.id.ivproductadd);
+        ImageView ivproductadd = view.findViewById(R.id.pro_ivproductadd);
         ivproductadd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(v).navigate(R.id.action_productFragment_to_newproductFragment);
+                Navigation.findNavController(v).navigate(R.id.action_productFragment_to_productInsertFragment3);
             }
         });
     }
@@ -134,13 +134,14 @@ public class ProductFragment extends Fragment {
         }
 
         class MyViewHolder extends RecyclerView.ViewHolder {
-            TextView pro_no, pro_name, pro_stock;
+            TextView pro_no, pro_name, pro_stock ,pro_Sale;
 
             public MyViewHolder(View itemView) {
                 super(itemView);
-                pro_name = itemView.findViewById(R.id.pro_name);
-                pro_no = itemView.findViewById(R.id.pro_no);
-                pro_stock = itemView.findViewById(R.id.pro_stock);
+                pro_name = itemView.findViewById(R.id.proItem_tvetName);
+                pro_no = itemView.findViewById(R.id.proItem_tvNo);
+                pro_stock = itemView.findViewById(R.id.proItem_tvDesc);
+                pro_Sale = itemView.findViewById(R.id.proItem_tvSale);
             }
         }
 
@@ -163,53 +164,21 @@ public class ProductFragment extends Fragment {
             viewHolder.pro_name.setText(String.valueOf(product.getPro_name()));
             viewHolder.pro_stock.setText(String.valueOf(product.getPro_stock()));
 
-            viewHolder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            if (product.getPro_Sale()==0){
+                viewHolder.pro_Sale.setTextColor(Color.RED);
+                viewHolder.pro_Sale.setText("已下架");
+            }else {
+                viewHolder.pro_Sale.setTextColor(Color.BLACK);
+                viewHolder.pro_Sale.setText("上架中");
+            }
+
+            viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public boolean onLongClick(final View view) {
-                    PopupMenu popupMenu = new PopupMenu(activity, view, Gravity.END);
-                    popupMenu.inflate(R.menu.popup_menu_product);
-                    popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                        @Override
-                        public boolean onMenuItemClick(MenuItem item) {
-                            switch (item.getItemId()) {
-                                case R.id.update:
-                                    Bundle bundle = new Bundle();
-                                    bundle.putSerializable("product", product);
-                                    Navigation.findNavController(view)
-                                            .navigate(R.id.action_productFragment_to_updateproductFragment, bundle);
-                                    break;
-                                case R.id.delete:
-                                    if (Common.networkConnected(activity)) {
-                                        String url = Common.URL_SERVER + "/ProductServlet";
-                                        JsonObject jsonObject = new JsonObject();
-                                        jsonObject.addProperty("action", "productDelete");
-                                        jsonObject.addProperty("productpro_no", product.getPro_no());
-                                        int count = 0;
-                                        try {
-                                            productDeleteTask = new CommonTask(url, jsonObject.toString());
-                                            String result = productDeleteTask.execute().get();
-                                            count = Integer.valueOf(result);
-                                        } catch (Exception e) {
-                                            Log.e(TAG, e.toString());
-                                        }
-                                        if (count == 0) {
-                                            Common.showToast(activity, String.valueOf(R.string.textDeleteFail));
-                                        } else {
-                                            products.remove(product);
-                                            ProductAdapter.this.notifyDataSetChanged();
-                                            // 外面spots也必須移除選取的spot
-                                            ProductFragment.this.products.remove(product);
-                                            Common.showToast(activity, String.valueOf(R.string.textDeleteSuccess));
-                                        }
-                                    } else {
-                                        Common.showToast(activity, String.valueOf(R.string.textNoNetwork));
-                                    }
-                            }
-                            return true;
-                        }
-                    });
-                    popupMenu.show();
-                    return true;
+                public void onClick(final View view) {
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("product", product);
+                    Navigation.findNavController(view)
+                            .navigate(R.id.action_productFragment_to_productUpdateFragment, bundle);
                 }
             });
         }
@@ -219,10 +188,9 @@ public class ProductFragment extends Fragment {
     }
 
     private List<Product> getProducts() {
-        // List<Product> products = new ArrayList<>();
+        // List<com.g2.runningback.prod.Product> products = new ArrayList<>();
         List<Product> products = null;
         if (Common.networkConnected(activity)) {
-            String url = Common.URL_SERVER + "/ProductServlet";
             JsonObject jsonObject = new JsonObject();
             jsonObject.addProperty("action", "getAll");
             String jsonOut = jsonObject.toString();

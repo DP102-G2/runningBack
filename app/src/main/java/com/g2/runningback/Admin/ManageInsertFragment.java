@@ -1,4 +1,4 @@
-package com.g2.runningback;
+package com.g2.runningback.Admin;
 
 
 import android.app.Activity;
@@ -20,6 +20,7 @@ import android.widget.Spinner;
 
 import com.g2.runningback.Common.Common;
 import com.g2.runningback.Common.CommonTask;
+import com.g2.runningback.R;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
