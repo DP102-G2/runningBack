@@ -16,9 +16,13 @@
     </fragment>
     <fragment
         android:id="@+id/userFragment"
-        android:name="com.g2.runningback.UserFragment"
+        android:name="com.g2.runningback.User.UserFragment"
         android:label="fragment_user"
-        tools:layout="@layout/fragment_user" />
+        tools:layout="@layout/fragment_user" >
+        <action
+            android:id="@+id/action_userFragment_to_userDetailFragment"
+            app:destination="@id/userDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/productFragment"
         android:name="com.g2.runningback.prod.ProductFragment"
@@ -86,4 +90,10 @@
         android:name="com.g2.runningback.Service.ServerDetailFragment"
         android:label="fragment_server_detail"
         tools:layout="@layout/fragment_server_detail" />
+    <fragment
+        android:id="@+id/userDetailFragment"
+        android:name="com.g2.runningback.User.UserDetailFragment"
+        android:label="fragment_user_detail"
+        tools:layout="@layout/fragment_user_detail" />
+
 </navigation>

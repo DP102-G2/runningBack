@@ -15,6 +15,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.g2.runningback.Admin.AdminActivity;
+import com.g2.runningback.Login.LoginActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import static android.content.ContentValues.TAG;

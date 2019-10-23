@@ -37,6 +37,8 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.g2.runningback.Admin.Manage;
+
 import static androidx.constraintlayout.widget.Constraints.TAG;
 
 public class ManageListFragment extends Fragment {
@@ -237,7 +239,7 @@ public class ManageListFragment extends Fragment {
                                         } else {
                                             manages.remove(manage);
                                             ManageAdapter.this.notifyDataSetChanged();
-                                            Common.showToast(activity, "text delete success");
+                                            Common.showToast(activity, "刪除成功");
                                         }
                                     } else {
                                         Common.showToast(activity, "no network");

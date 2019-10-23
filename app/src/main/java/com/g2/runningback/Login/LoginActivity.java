@@ -1,17 +1,13 @@
-package com.g2.runningback;
+package com.g2.runningback.Login;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,10 +15,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.g2.runningback.Common.Common;
 import com.g2.runningback.Common.CommonTask;
+import com.g2.runningback.R;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
 import static android.content.ContentValues.TAG;
+
 public class LoginActivity extends AppCompatActivity {
 
     private EditText etId,etPassword;
@@ -51,7 +49,7 @@ public class LoginActivity extends AppCompatActivity {
                     jsonObject.addProperty("login",new Gson().toJson(login));
 
                     if (password.length() <=0 || id.length() <=0) {
-                        Common.showToast(LoginActivity.this, "Must not blank ");
+                        Common.showToast(LoginActivity.this, "不行空白 ");
                         return;
                     }
 

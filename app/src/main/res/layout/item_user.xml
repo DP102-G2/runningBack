@@ -17,7 +17,7 @@
             android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/tvuser_no"
+        android:id="@+id/itemuser_no"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="UserNo"
@@ -27,15 +27,15 @@
         card_view:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tvuser_name"
+        android:id="@+id/itemuser_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tvuser_no"
-        android:layout_alignStart="@id/tvuser_no"
+        android:layout_below="@id/itemuser_no"
+        android:layout_alignStart="@id/itemuser_no"
         android:layout_marginStart="90dp"
         android:text="UserName"
         android:textColor="#000000"
-        card_view:layout_constraintStart_toEndOf="@+id/tvuser_no"
+        card_view:layout_constraintStart_toEndOf="@+id/itemuser_no"
         card_view:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

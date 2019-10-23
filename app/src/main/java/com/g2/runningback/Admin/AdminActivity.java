@@ -11,7 +11,7 @@ import android.view.MenuItem;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.g2.runningback.LoginActivity;
+import com.g2.runningback.Login.LoginActivity;
 import com.g2.runningback.MainActivity;
 import com.g2.runningback.R;
 
