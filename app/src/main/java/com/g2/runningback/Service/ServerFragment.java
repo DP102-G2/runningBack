@@ -21,10 +21,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Adapter;
 import android.widget.TextView;
 
 import com.g2.runningback.Common.Common;
 import com.g2.runningback.Common.CommonTask;
+import com.g2.runningback.MainActivity;
 import com.g2.runningback.R;
 import com.g2.runningback.Service.serviceCommon.ServiceCommon;
 import com.google.gson.Gson;
@@ -42,6 +44,8 @@ import java.util.List;
 public class ServerFragment extends Fragment {
 
     String socket_no = "0";
+
+    MainActivity mainActivity;
 
     RecyclerView rv;
     View view;
@@ -61,9 +65,10 @@ public class ServerFragment extends Fragment {
         activity = getActivity();
 
         broadcastManager = LocalBroadcastManager.getInstance(activity);
-        registerFriendStateReceiver();
+        registerChatReceiver();
 
         ServiceCommon.connectServer(activity, socket_no);
+        mainActivity = (MainActivity) getActivity();
 
 
     }
@@ -79,9 +84,11 @@ public class ServerFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         this.view = view;
+        mainActivity.btbar.setVisibility(View.VISIBLE);
         messageList = getMessageList();
         holdView();
     }
+
 
     private void holdView() {
 
@@ -127,6 +134,8 @@ public class ServerFragment extends Fragment {
 
             if (message.msg_read == 0) {
                 holder.cardView.setCardBackgroundColor(activity.getColor(R.color.colorBrown));
+            }else {
+                holder.cardView.setCardBackgroundColor(activity.getColor(R.color.colorPrimary));
             }
 
             holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -181,41 +190,36 @@ public class ServerFragment extends Fragment {
 
     // 攔截user連線或斷線的Broadcast
     // 廣播接收器
-    private void registerFriendStateReceiver() {
-        IntentFilter openFilter = new IntentFilter("open");
-        IntentFilter closeFilter = new IntentFilter("close");
-        // 如果收到"OPEN"或"close"
 
-        broadcastManager.registerReceiver(friendStateReceiver, openFilter);
-        broadcastManager.registerReceiver(friendStateReceiver, closeFilter);
-        // 接收器，如果收到上面說的東西，就操作friendStateReceiver
+    private void registerChatReceiver() {
+        IntentFilter chatFilter = new IntentFilter("new Message");
+        // 攔截chat廣播
+        broadcastManager.registerReceiver(chatReceiver, chatFilter);
+        // 如果有我們就來做CHATRECEIVER
     }
 
-    // 自訂的接收器method
-    // 攔截user連線或斷線的Broadcast，並在RecyclerView呈現
-    private BroadcastReceiver friendStateReceiver = new BroadcastReceiver() {
 
-        // 只要收到廣播就會自動被呼叫
+
+    private BroadcastReceiver chatReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             String message = intent.getStringExtra("message");
-            // 紀錄轉收的資訊，目前是記錄每個人是否上下線，我應該只要提醒app重新整理recyclerView即可
-            // 範例是網端紀錄的每個人上下線狀況，我們不須這麼複雜，只需要提供提醒事項即可
-
-            // 根據得到的TYPE判斷下列要做什麼事情
-            switch (message) {
-                // 有user連線
-                case "newMessage":
-                    messageList = getMessageList();
-                    messageAdaper.setMessages(messageList);
-                    messageAdaper.notifyDataSetChanged();
-                    break;
-            }
-
-
+            // 拿到完整的資料
+            messageList=getMessageList();
+            messageAdaper.setMessages(messageList);
+            messageAdaper.notifyDataSetChanged();
+            rv.smoothScrollToPosition(1);
+            // 解析成需要顯示的字串
             Log.d(TAG, message);
         }
     };
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        // Fragment頁面切換時解除註冊，但不需要關閉WebSocket，
+        // 否則回到前頁好友列表，會因為斷線而無法顯示好友
+        broadcastManager.unregisterReceiver(chatReceiver);
+    }
 
 }

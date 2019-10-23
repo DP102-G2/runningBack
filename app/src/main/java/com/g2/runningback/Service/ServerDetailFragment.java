@@ -42,7 +42,7 @@ import java.util.List;
 public class ServerDetailFragment extends Fragment {
 
     private LocalBroadcastManager broadcastManager;
-    private String socket_no ="0";
+    private String socket_no = "0";
 
 
     MainActivity mainActivity;
@@ -64,7 +64,6 @@ public class ServerDetailFragment extends Fragment {
     private static final String TAG = "TAG_ChatFragment";
 
 
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,7 +76,7 @@ public class ServerDetailFragment extends Fragment {
         broadcastManager = LocalBroadcastManager.getInstance(activity);
         registerChatReceiver();
 
-        ServiceCommon.connectServer(activity,socket_no);
+        ServiceCommon.connectServer(activity, socket_no);
     }
 
     @Override
@@ -94,26 +93,27 @@ public class ServerDetailFragment extends Fragment {
         gson = Common.getTimeStampGson();
         messageList = getMessageList();
         holdView();
+        rvList.scrollToPosition(adapter.getItemCount() - 1);
+
 
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
+    public void setTextReaded(){
 
         JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("action","setTextReaded");
-        jsonObject.addProperty("user_no",user_no);
+        jsonObject.addProperty("action", "setTextReaded");
+        jsonObject.addProperty("user_no", user_no);
 
         try {
-            commonTask = new CommonTask(url,jsonObject.toString());
+            commonTask = new CommonTask(url, jsonObject.toString());
             String countStr = commonTask.execute().get();
 
-        }catch (Exception e){
+        } catch (Exception e) {
 
         }
 
     }
+
 
     private void holdView() {
 
@@ -150,6 +150,7 @@ public class ServerDetailFragment extends Fragment {
         Activity activity;
         List<Message> messages;
         LayoutInflater layoutInflater;
+        int imageSize;
 
         public void setMessages(List<Message> messages) {
             this.messages = messages;
@@ -159,6 +160,7 @@ public class ServerDetailFragment extends Fragment {
             this.activity = activity;
             this.messages = messageList;
             layoutInflater = LayoutInflater.from(activity);
+            imageSize = getResources().getDisplayMetrics().widthPixels;
         }
 
         @NonNull
@@ -177,11 +179,9 @@ public class ServerDetailFragment extends Fragment {
                 holder.cardView.setCardBackgroundColor(activity.getColor(R.color.colorBrown));
                 holder.cardView.setTranslationX(0);
 
-            }else {
+            } else {
                 holder.cardView.setCardBackgroundColor(activity.getColor(R.color.colorPrimary));
-
-                holder.cardView.setTranslationX(250);
-
+                holder.cardView.setTranslationX(imageSize - 800);
             }
 
             holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -210,9 +210,6 @@ public class ServerDetailFragment extends Fragment {
             }
         }
     }
-
-
-
 
 
     private List<Message> getMessageList() {
@@ -250,20 +247,25 @@ public class ServerDetailFragment extends Fragment {
         public void onReceive(Context context, Intent intent) {
             String message = intent.getStringExtra("message");
             // 拿到完整的資料
-            Message chatMessage = new Gson().fromJson(message, Message.class);
-            messageList.add(chatMessage);
-            adapter.setMessages(messageList);
-            adapter.notifyDataSetChanged();
-            rvList.smoothScrollToPosition(adapter.getItemCount());
-            // 解析成需要顯示的字串
-            Log.d(TAG, message);
+            Message chatMessage = gson.fromJson(message, Message.class);
+
+            if (chatMessage.getUser_no() == user_no) {
+
+                messageList.add(chatMessage);
+                adapter.setMessages(messageList);
+                adapter.notifyDataSetChanged();
+                rvList.smoothScrollToPosition(adapter.getItemCount());
+                // 解析成需要顯示的字串
+                setTextReaded();
+                Log.d(TAG, message);
+            }
         }
     };
 
-    private void pushToSocket(){
+    private void pushToSocket() {
         String text = etMessage.getText().toString();
         Message message = new Message(user_no, 0, text, 1);
-        ServiceCommon.chatWebSocketClient.send(new Gson().toJson(message));
+        ServiceCommon.chatWebSocketClient.send(gson.toJson(message));
     }
 
     private void insertMessage() {
@@ -273,7 +275,7 @@ public class ServerDetailFragment extends Fragment {
         Message message = new Message(user_no, 0, text, 1);
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("action", "insertMessage");
-        jsonObject.addProperty("message", new Gson().toJson(message));
+        jsonObject.addProperty("message", gson.toJson(message));
 
         commonTask = new CommonTask(url, jsonObject.toString());
 

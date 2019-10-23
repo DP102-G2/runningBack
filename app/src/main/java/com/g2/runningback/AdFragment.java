@@ -40,11 +40,13 @@ public class AdFragment extends Fragment {
     private List<Adproduct> adproducts;
     private CommonTask adproductGetAllTask;
     private ImageTask adproductImageTask;
+    MainActivity mainActivity;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         activity = getActivity();
+        mainActivity = (MainActivity) getActivity();
     }
 
 
@@ -59,6 +61,7 @@ public class AdFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        mainActivity.btbar.setVisibility(View.VISIBLE);
         recyclerView = view.findViewById(R.id.rvAdProduct);
         recyclerView.setLayoutManager(new LinearLayoutManager(activity));
         recyclerView.setAdapter(new AdFragment.AdproductAdapter(activity, adproducts));

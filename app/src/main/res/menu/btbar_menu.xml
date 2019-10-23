@@ -5,5 +5,5 @@
     <item android:title="會員" android:icon="@drawable/ic_user" android:id="@+id/userFragment"/>
     <item android:title="商品" android:icon="@drawable/ic_pro" android:id="@+id/productFragment"/>
     <item android:title="訂單" android:icon="@drawable/ic_order" android:id="@+id/orderFragment"/>
-    <item android:title="銷售" android:icon="@drawable/ic_sale" android:id="@+id/saleFragment"/>
+    <item android:title="客服" android:icon="@drawable/ic_sale" android:id="@+id/serverFragment"/>
 </menu>
