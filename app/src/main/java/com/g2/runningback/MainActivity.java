@@ -20,7 +20,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import static android.content.ContentValues.TAG;
 
 public class MainActivity extends AppCompatActivity {
-    BottomNavigationView btbar;
+    public BottomNavigationView btbar;
     Intent intent;
 
     @Override

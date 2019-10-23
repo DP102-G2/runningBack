@@ -30,6 +30,9 @@
         <action
             android:id="@+id/action_productFragment_to_productUpdateFragment"
             app:destination="@id/productUpdateFragment" />
+        <action
+            android:id="@+id/action_productFragment_to_serverFragment"
+            app:destination="@id/serverFragment" />
     </fragment>
     <fragment
         android:id="@+id/orderFragment"
@@ -69,4 +72,18 @@
         android:name="com.g2.runningback.prod.ProductUpdateFragment"
         android:label="fragment_product_update"
         tools:layout="@layout/fragment_product_update" />
+    <fragment
+        android:id="@+id/serverFragment"
+        android:name="com.g2.runningback.Service.ServerFragment"
+        android:label="fragment_server"
+        tools:layout="@layout/fragment_server" >
+        <action
+            android:id="@+id/action_serverFragment_to_serverDetailFragment"
+            app:destination="@id/serverDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/serverDetailFragment"
+        android:name="com.g2.runningback.Service.ServerDetailFragment"
+        android:label="fragment_server_detail"
+        tools:layout="@layout/fragment_server_detail" />
 </navigation>

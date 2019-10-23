@@ -9,6 +9,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -39,6 +40,7 @@ public class ProductFragment extends Fragment {
     private SearchView searchView;
     private RecyclerView recyclerView;
     private List<Product> products;
+    private ImageView ivToServer;
     private CommonTask productGetAllTask;
     private ImageTask productImageTask;
     private CommonTask productDeleteTask;
@@ -68,6 +70,14 @@ public class ProductFragment extends Fragment {
         recyclerView = view.findViewById(R.id.pro_rvproduct);
         recyclerView.setLayoutManager(new LinearLayoutManager(activity));
         recyclerView.setAdapter(new ProductAdapter(activity, products));
+
+        ivToServer = view.findViewById(R.id.iv_testToServer);
+        ivToServer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(v).navigate(R.id.action_productFragment_to_serverFragment);
+            }
+        });
 
         products = getProducts();
         showProducts(products);
