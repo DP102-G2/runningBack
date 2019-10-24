@@ -114,9 +114,9 @@ public class ProductInsertPTFragment extends Fragment implements View.OnClickLis
             etSotck.setText(String.valueOf(product.getPro_stock()));
             etPrice.setText(String.valueOf(product.getPro_price()));
 
-            if (product.getPro_Sale()==1){
+            if (product.getPro_Sale() == 1) {
                 swSale.setChecked(true);
-            }else {
+            } else {
                 swSale.setChecked(false);
             }
 
@@ -129,8 +129,14 @@ public class ProductInsertPTFragment extends Fragment implements View.OnClickLis
         switch (v.getId()) {
             case R.id.ispro2_btConfirm:
 
-                if (etPrice.getText().toString().equals("") | etProInfo.getText().toString().equals("")  | etSotck.getText().toString().equals("") ) {
-                    Common.showToast(activity, "Please Fill Your Data");
+                saveProData();
+
+                if (etPrice.getText().toString().equals("") | etProInfo.getText().toString().equals("") | etSotck.getText().toString().equals("")) {
+                    Common.showToast(activity, "請填寫你的資訊");
+                } else if (Integer.valueOf(etPrice.getText().toString().trim()) < 1) {
+                    Common.showToast(activity, "售價不可低於零");
+                } else if (product.getPro_stock()==0 && product.getPro_Sale()==1) {
+                    Common.showToast(activity, "庫存為零，產品無法上架");
                 } else {
                     saveProData();
                     JsonObject jsonObject = new JsonObject();
@@ -142,12 +148,12 @@ public class ProductInsertPTFragment extends Fragment implements View.OnClickLis
                     }
 
                     if (product.getPro_image2() != null) {
-                        img2 = product.getPro_image();
+                        img2 = product.getPro_image2();
                         jsonObject.addProperty("image2", Base64.encodeToString(img2, Base64.DEFAULT));
                     }
 
                     if (product.getPro_image3() != null) {
-                        img3 = product.getPro_image();
+                        img3 = product.getPro_image3();
                         jsonObject.addProperty("image3", Base64.encodeToString(img3, Base64.DEFAULT));
                     }
 
@@ -168,10 +174,8 @@ public class ProductInsertPTFragment extends Fragment implements View.OnClickLis
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-
-
-                }
                 Navigation.findNavController(v).navigate(R.id.action_productInsertPTFragment_to_productFragment);
+                }
                 break;
             case R.id.ispro2_btBack:
                 Navigation.findNavController(view).popBackStack();

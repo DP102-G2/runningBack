@@ -26,7 +26,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/updatespJob" />
 
-    <EditText
+    <TextView
         android:id="@+id/updateetNo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -48,7 +48,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/updatename" />
 
-    <EditText
+    <TextView
         android:id="@+id/updateetId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

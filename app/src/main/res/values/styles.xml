@@ -8,4 +8,14 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <!-- 文字輸入方塊 -->
+    <style name="type_radius" parent="@android:style/Widget.EditText">
+        <item name="android:textSize">17sp</item>
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+        <item name="android:gravity">left</item>
+        <item name="android:background">@drawable/et_radius</item>
+        <item name="android:padding">8dip</item>
+    </style>
+
+
 </resources>

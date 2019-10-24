@@ -17,7 +17,7 @@
             android:layout_marginStart="32dp"
             android:layout_marginTop="32dp"
             android:layout_marginEnd="32dp"
-            android:src="@drawable/ic_user"
+            android:src="@drawable/pro_image"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -27,7 +27,7 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginTop="16dp"
-            android:src="@drawable/ic_user"
+            android:src="@drawable/pro_image"
             app:layout_constraintStart_toStartOf="@+id/ispro_ivMain"
             app:layout_constraintTop_toBottomOf="@+id/ispro_ivMain" />
 
@@ -36,7 +36,7 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginTop="16dp"
-            android:src="@drawable/ic_user"
+            android:src="@drawable/pro_image"
             app:layout_constraintEnd_toStartOf="@+id/ispro_ivThree"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/ispro_ivOne"
@@ -47,7 +47,7 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginTop="16dp"
-            android:src="@drawable/ic_user"
+            android:src="@drawable/pro_image"
             app:layout_constraintEnd_toEndOf="@+id/ispro_ivMain"
             app:layout_constraintTop_toBottomOf="@+id/ispro_ivMain" />
 
@@ -62,11 +62,11 @@
 
         <EditText
             android:id="@+id/ispro_etProNo"
+            style="@style/type_radius"
             android:layout_width="240dp"
             android:layout_height="35dp"
             android:layout_marginTop="16dp"
             android:hint=" 請輸入商品編號"
-            android:background="@drawable/sreach_style"
             app:layout_constraintStart_toStartOf="@+id/textView7"
             app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
@@ -91,12 +91,12 @@
 
         <AutoCompleteTextView
             android:id="@+id/ispro_etProCat"
+            style="@style/type_radius"
             android:layout_width="240dp"
             android:layout_height="35dp"
             android:layout_marginTop="16dp"
-            android:hint="  請輸入商品類別"
             android:completionThreshold="1"
-            android:background="@drawable/sreach_style"
+            android:hint="  請輸入商品類別"
             app:layout_constraintStart_toStartOf="@+id/textView10"
             app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
@@ -121,11 +121,11 @@
 
         <EditText
             android:id="@+id/ispro_etProName"
+            style="@style/type_radius"
             android:layout_width="240dp"
             android:layout_height="35dp"
             android:layout_marginTop="16dp"
             android:hint="  請輸入商品名稱"
-            android:background="@drawable/sreach_style"
             app:layout_constraintStart_toStartOf="@+id/textView13"
             app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
@@ -150,10 +150,10 @@
 
         <EditText
             android:id="@+id/ispro_etProDesc"
+            style="@style/type_radius"
             android:layout_width="240dp"
             android:layout_height="35dp"
             android:layout_marginTop="16dp"
-            android:background="@drawable/sreach_style"
             android:hint="  請輸入商品副標題"
             app:layout_constraintStart_toStartOf="@+id/textView16"
             app:layout_constraintTop_toBottomOf="@+id/textView16" />

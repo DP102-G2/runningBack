@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.g2.runningback.Common.Common;
 import com.g2.runningback.Common.CommonTask;
@@ -28,7 +29,8 @@ import static android.content.ContentValues.TAG;
 public class ManageUpdateFragment extends Fragment {
     private Spinner spJob;
     private Activity activity;
-    private EditText etNo,etName,etPassword,etId;
+    private EditText etName,etPassword;
+    private TextView etNo,etId;
     private String emp_no;
 
     @Override
@@ -97,7 +99,7 @@ public class ManageUpdateFragment extends Fragment {
                         break;
                 }
 
-                if(name.length()<=0||id.length()<=0||password.length()<=0||no.length()<=0){
+                if(name.length()<=0||password.length()<=0){
                     Common.showToast(getActivity(),"輸入不行空白");
                     return;
                 }

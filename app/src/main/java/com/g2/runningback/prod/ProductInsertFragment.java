@@ -55,7 +55,7 @@ public class ProductInsertFragment extends Fragment implements View.OnClickListe
     private View view;
     Button btNextPage;
     ImageView ivMain, ivOne, ivTwo, ivThree;
-    EditText  etProNo, etProName, etProDesc;
+    EditText etProNo, etProName, etProDesc;
     AutoCompleteTextView etProCat;
     String proNo, proCat, proName, proDesc;
     int ImageNum = 1;
@@ -162,7 +162,7 @@ public class ProductInsertFragment extends Fragment implements View.OnClickListe
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String item = parent.getItemAtPosition(position).toString();
                 //建立字串，在調適器中放入被點選物件的框架在抓取標題
-                Toast.makeText(activity,item, Toast.LENGTH_SHORT).show();
+                Toast.makeText(activity, item, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -204,17 +204,36 @@ public class ProductInsertFragment extends Fragment implements View.OnClickListe
                                             Common.showToast(activity, "沒有照片");
                                             break;
                                         }
-                                        img1 = img2;
-                                        img2 = img3;
-                                        img3 = null;
-                                        ivMain.setImageDrawable(ivTwo.getDrawable());
-                                        ivOne.setImageDrawable(ivTwo.getDrawable());
-                                        ivTwo.setImageDrawable(ivThree.getDrawable());
-                                        ivThree.setImageResource(R.drawable.ic_home);
-                                        ivThree.setVisibility(View.GONE);
-                                        if (img2 == null) {
-                                            ivTwo.setVisibility(View.GONE);
+                                        if (img2 != null && img3 != null) {
+                                            img1 = img2;
+                                            img2 = img3;
+                                            img3 = null;
+                                            ivMain.setImageDrawable(ivTwo.getDrawable());
+                                            ivOne.setImageDrawable(ivTwo.getDrawable());
+                                            ivTwo.setImageDrawable(ivThree.getDrawable());
+                                            ivThree.setImageResource(R.drawable.pro_image);
+                                            break;
                                         }
+                                        if (img2 != null ){
+                                            img1 = img2 ;
+                                            img2 =null;
+                                            ivMain.setImageDrawable(ivTwo.getDrawable());
+                                            ivOne.setImageDrawable(ivTwo.getDrawable());
+                                            ivTwo.setImageResource(R.drawable.pro_image);
+                                            ivThree.setVisibility(View.GONE);
+                                            break;
+
+                                        }
+
+                                        if (img3 == null){
+                                            img1 = null ;
+                                            ivMain.setImageResource(R.drawable.pro_image);
+                                            ivOne.setImageResource(R.drawable.pro_image);
+                                            ivTwo.setVisibility(View.GONE);
+                                            break;
+                                        }
+
+
                                         break;
                                     case 2:
                                         if (img2 == null) {
@@ -225,12 +244,10 @@ public class ProductInsertFragment extends Fragment implements View.OnClickListe
                                             img2 = img3;
                                             img3 = null;
                                             ivTwo.setImageDrawable(ivThree.getDrawable());
-                                            ivThree.setImageResource(R.drawable.ic_home);
-                                            ivThree.setVisibility(View.GONE);
-
+                                            ivThree.setImageResource(R.drawable.pro_image);
                                         } else {
                                             img2 = null;
-                                            ivTwo.setImageResource(R.drawable.ic_home);
+                                            ivTwo.setImageResource(R.drawable.pro_image);
                                             ivThree.setVisibility(View.GONE);
                                         }
                                         ImageNum = 1;
@@ -242,7 +259,7 @@ public class ProductInsertFragment extends Fragment implements View.OnClickListe
                                             break;
                                         } else {
                                             img3 = null;
-                                            ivThree.setImageResource(R.drawable.ic_home);
+                                            ivThree.setImageResource(R.drawable.pro_image);
                                             ivMain.setImageDrawable(ivTwo.getDrawable());
                                         }
                                         ImageNum = 2;
@@ -275,9 +292,9 @@ public class ProductInsertFragment extends Fragment implements View.OnClickListe
                 }
 
 
-                if (etProCat.getText().toString() == "" || etProDesc.getText().toString() == "" ||
-                        etProName.getText().toString() == "" || etProNo.getText().toString() == "" || img1 == null) {
-                    Common.showToast(activity, "Please Fill ur EditText");
+                if (etProCat.getText().toString().trim().equals("") || etProDesc.getText().toString().trim().equals("") ||
+                        etProName.getText().toString().trim().equals("") || etProNo.getText().toString().trim().equals("") || img1 == null) {
+                    Common.showToast(activity, "請完成填寫資料");
                     return;
                 }
                 if (etProNo.getText().length() > 5) {
@@ -285,8 +302,8 @@ public class ProductInsertFragment extends Fragment implements View.OnClickListe
                     return;
                 }
                 JsonObject jsonObject = new JsonObject();
-                jsonObject.addProperty("action","checkProNo");
-                jsonObject.addProperty("ProductNo",proNo);
+                jsonObject.addProperty("action", "checkProNo");
+                jsonObject.addProperty("ProductNo", proNo);
 
                 checkProNameTask = new CommonTask(url, jsonObject.toString());
                 try {
@@ -312,11 +329,9 @@ public class ProductInsertFragment extends Fragment implements View.OnClickListe
     }
 
 
-
     @Override
     public void onPause() {
         super.onPause();
-
 
 
         proNo = etProNo.getText().toString();
@@ -338,7 +353,6 @@ public class ProductInsertFragment extends Fragment implements View.OnClickListe
 
 
         pref.edit().putString("Product", new Gson().toJson(product)).apply();
-
 
 
     }

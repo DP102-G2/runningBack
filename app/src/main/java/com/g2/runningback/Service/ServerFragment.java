@@ -129,8 +129,8 @@ public class ServerFragment extends Fragment {
         public void onBindViewHolder(@NonNull messageAdaper.messageViewHolder holder, int position) {
 
             final Message message = messages.get(position);
-            holder.tvUserNo.setText(String.valueOf(message.getUser_no()));
-            holder.tvNoRead.setText(String.valueOf(message.getMsg_read()));
+            holder.tvUserNo.setText("會編: "+message.getUser_no());
+            holder.tvNoRead.setText("未讀: "+message.getMsg_read()+"則");
 
             if (message.msg_read == 0) {
                 holder.cardView.setCardBackgroundColor(activity.getColor(R.color.colorBrown));

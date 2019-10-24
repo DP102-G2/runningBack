@@ -28,8 +28,8 @@ import com.google.gson.JsonObject;
 
 
 public class ProductUpdateFragment extends Fragment {
-    private EditText pro_name, pro_stock,pro_desc,pro_price,pro_info;
-    private TextView pro_no,cat_no;
+    private EditText pro_name, pro_stock, pro_desc, pro_price, pro_info;
+    private TextView pro_no, cat_no;
     private Switch swSale;
 
     private Activity activity;
@@ -62,7 +62,7 @@ public class ProductUpdateFragment extends Fragment {
 
     }
 
-    private void onHoldView(){
+    private void onHoldView() {
         pro_no = view.findViewById(R.id.proUpdate_tvNo);
         pro_name = view.findViewById(R.id.proUpdate_tvName);
         pro_stock = view.findViewById(R.id.proUpdate_etStock);
@@ -84,9 +84,9 @@ public class ProductUpdateFragment extends Fragment {
                 pro_info.setText(product.getPro_info());
                 cat_no.setText(product.getCat_no());
 
-                if (product.pro_Sale==1){
+                if (product.pro_Sale == 1) {
                     swSale.setChecked(true);
-                }else {
+                } else {
                     swSale.setChecked(false);
                 }
 
@@ -98,9 +98,14 @@ public class ProductUpdateFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 String no = pro_no.getText().toString();
-                if (pro_no.length() <= 0||pro_name.getText().toString().equals("")|pro_stock.getText().toString().equals("")|pro_price.getText().toString().equals("")
-                        |pro_desc.getText().toString().equals("")|pro_info.getText().toString().equals("")|cat_no.getText().toString().equals("")) {
-                    Common.showToast(activity,activity.getString(R.string.textNameIsInvalid));
+                if (pro_no.length() <= 0 || pro_name.getText().toString().equals("") | pro_stock.getText().toString().equals("") | pro_price.getText().toString().equals("")
+                        | pro_desc.getText().toString().equals("") | pro_info.getText().toString().equals("") | cat_no.getText().toString().equals("")) {
+                    Common.showToast(activity, activity.getString(R.string.textNameIsInvalid));
+                    return;
+                }
+
+                if (Integer.parseInt(pro_stock.getText().toString().trim()) < 1 && swSale.isChecked()) {
+                    Common.showToast(activity, "庫存為零，無法上架商品");
                     return;
                 }
 
@@ -110,18 +115,15 @@ public class ProductUpdateFragment extends Fragment {
                 String desc = pro_desc.getText().toString().trim();
                 String info = pro_info.getText().toString().trim();
 
-
-
-
                 if (Common.networkConnected(activity)) {
                     String url = Common.URL_SERVER + "ProductServlet";
 
-                    if (swSale.isChecked()){
-                       product.setPro_Sale(1);
-                    }else {
+                    if (swSale.isChecked()) {
+                        product.setPro_Sale(1);
+                    } else {
                         product.setPro_Sale(0);
                     }
-                    Product nProduct = new Product(product.pro_no,product.cat_no,name,desc,price,stock,product.getPro_Sale(),info);
+                    Product nProduct = new Product(product.pro_no, product.cat_no, name, desc, price, stock, product.getPro_Sale(), info);
 
 
                     JsonObject jsonObject = new JsonObject();
@@ -141,7 +143,7 @@ public class ProductUpdateFragment extends Fragment {
                         Common.showToast(activity, "修改成功");
                     }
                 } else {
-                    Common.showToast(activity,activity.getString( R.string.textNoNetwork));
+                    Common.showToast(activity, activity.getString(R.string.textNoNetwork));
                 }
                 /* 回前一個Fragment */
                 Navigation.findNavController(v).popBackStack();

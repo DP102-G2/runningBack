@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="40dp"
+    android:layout_height="60dp"
     android:layout_margin="8dp"
     android:foreground="?selectableItemBackground"
     app:cardBackgroundColor="#FFFFFF"
@@ -15,7 +15,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/proItem_tvNo"
@@ -26,14 +26,17 @@
             android:paddingVertical="8dp"
             android:text="TextView"
             android:textSize="17sp"
-            app:layout_constraintBaseline_toBaselineOf="@+id/proItem_tvetName"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/proItem_tvetName"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintHorizontal_bias="0.6"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/proItem_tvetName"
             android:layout_width="80dp"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
             android:gravity="center"
             android:text="TextView"
             android:textSize="17sp"
@@ -48,9 +51,10 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:gravity="center"
-            app:layout_constraintBaseline_toBaselineOf="@+id/proItem_tvetName"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/proItem_tvSale"
             app:layout_constraintStart_toEndOf="@+id/proItem_tvetName"
+            app:layout_constraintTop_toTopOf="parent"
             tools:text="tv" />
 
         <TextView
@@ -59,10 +63,10 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:text="TextView"
-            app:layout_constraintBottom_toBottomOf="@+id/proItem_tvDesc"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/proItem_tvDesc"
-            app:layout_constraintTop_toTopOf="@+id/proItem_tvDesc" />
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

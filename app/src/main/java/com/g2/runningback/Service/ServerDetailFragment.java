@@ -22,6 +22,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.g2.runningback.Common.Common;
@@ -54,7 +55,7 @@ public class ServerDetailFragment extends Fragment {
     mesAdapter adapter;
     RecyclerView rvList;
     EditText etMessage;
-    Button btSubmit;
+    ImageView btSubmit;
 
     Bundle bundle;
     int user_no;
@@ -94,12 +95,15 @@ public class ServerDetailFragment extends Fragment {
         messageList = getMessageList();
         holdView();
         rvList.scrollToPosition(adapter.getItemCount() - 1);
+    }
 
-
+    @Override
+    public void onResume() {
+        super.onResume();
+        setTextReaded();
     }
 
     public void setTextReaded(){
-
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("action", "setTextReaded");
         jsonObject.addProperty("user_no", user_no);
@@ -250,7 +254,6 @@ public class ServerDetailFragment extends Fragment {
             Message chatMessage = gson.fromJson(message, Message.class);
 
             if (chatMessage.getUser_no() == user_no) {
-
                 messageList.add(chatMessage);
                 adapter.setMessages(messageList);
                 adapter.notifyDataSetChanged();
