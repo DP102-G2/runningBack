@@ -44,13 +44,13 @@ public class ProductUpdateFragment extends Fragment {
         super.onCreate(savedInstanceState);
         activity = getActivity();
         bundle = getArguments();
+
     }
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        activity.setTitle(R.string.productmanagment);
         return inflater.inflate(R.layout.fragment_product_update, container, false);
     }
 
@@ -58,6 +58,7 @@ public class ProductUpdateFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         this.view = view;
+        activity.setTitle("修改商品");
         onHoldView();
 
     }

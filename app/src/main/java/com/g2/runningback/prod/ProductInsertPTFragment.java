@@ -63,6 +63,7 @@ public class ProductInsertPTFragment extends Fragment implements View.OnClickLis
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         this.view = view;
+        activity.setTitle("新增商品");
         onHoldView();
         getPref();
 

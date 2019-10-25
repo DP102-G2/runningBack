@@ -74,6 +74,7 @@ public class ServerDetailFragment extends Fragment {
         bundle = getArguments();
         user_no = bundle.getInt("user_no");
 
+
         broadcastManager = LocalBroadcastManager.getInstance(activity);
         registerChatReceiver();
 
@@ -91,6 +92,7 @@ public class ServerDetailFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         this.view = view;
+        activity.setTitle("客服_會員編號： "+user_no);
         gson = Common.getTimeStampGson();
         messageList = getMessageList();
         holdView();

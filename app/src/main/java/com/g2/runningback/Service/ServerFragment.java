@@ -70,7 +70,6 @@ public class ServerFragment extends Fragment {
         ServiceCommon.connectServer(activity, socket_no);
         mainActivity = (MainActivity) getActivity();
 
-
     }
 
     @Override
@@ -84,6 +83,7 @@ public class ServerFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         this.view = view;
+        activity.setTitle("客服管理");
         mainActivity.btbar.setVisibility(View.VISIBLE);
         messageList = getMessageList();
         holdView();
@@ -129,7 +129,7 @@ public class ServerFragment extends Fragment {
         public void onBindViewHolder(@NonNull messageAdaper.messageViewHolder holder, int position) {
 
             final Message message = messages.get(position);
-            holder.tvUserNo.setText("會編: "+message.getUser_no());
+            holder.tvUserNo.setText("編號: "+message.getUser_no());
             holder.tvNoRead.setText("未讀: "+message.getMsg_read()+"則");
 
             if (message.msg_read == 0) {
@@ -208,7 +208,7 @@ public class ServerFragment extends Fragment {
             messageList=getMessageList();
             messageAdaper.setMessages(messageList);
             messageAdaper.notifyDataSetChanged();
-            rv.smoothScrollToPosition(1);
+            rv.smoothScrollToPosition(0);
             // 解析成需要顯示的字串
             Log.d(TAG, message);
         }

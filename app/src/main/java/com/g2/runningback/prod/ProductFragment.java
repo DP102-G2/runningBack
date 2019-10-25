@@ -50,20 +50,18 @@ public class ProductFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         activity = getActivity();
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        activity.setTitle(R.string.productmanagment);
         return inflater.inflate(R.layout.fragment_product, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+        activity.setTitle("管理商品");
         searchView = view.findViewById(R.id.pro_sv);
         recyclerView = view.findViewById(R.id.pro_rvproduct);
         recyclerView.setLayoutManager(new LinearLayoutManager(activity));

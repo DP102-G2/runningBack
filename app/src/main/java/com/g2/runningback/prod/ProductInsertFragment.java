@@ -81,6 +81,7 @@ public class ProductInsertFragment extends Fragment implements View.OnClickListe
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         activity = getActivity();
+
         pref = activity.getSharedPreferences(PREFERENCES_NAME, MODE_PRIVATE);
     }
 
@@ -88,7 +89,6 @@ public class ProductInsertFragment extends Fragment implements View.OnClickListe
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        activity.setTitle(R.string.productmanagment);
         return inflater.inflate(R.layout.fragment_product_insert, container, false);
     }
 
@@ -96,6 +96,7 @@ public class ProductInsertFragment extends Fragment implements View.OnClickListe
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         this.view = view;
+        activity.setTitle("新增商品");
         getCateList();
         onViewHolder();
         getPref();
