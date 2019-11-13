@@ -48,7 +48,7 @@ public class AdminActivity extends AppCompatActivity {
                         MODE_PRIVATE);
                 pref.edit().putBoolean("isSignIn", false).apply();
                 Log.d(TAG, "AdminActivity 已登出");
-                intent = new Intent(AdminActivity.this, LoginActivity.class);
+                intent = new Intent(this, LoginActivity.class);
                 startActivity(intent);
                 return true;
         }
@@ -63,7 +63,7 @@ public class AdminActivity extends AppCompatActivity {
         boolean login = pref.getBoolean("isSignIn", false);
         if (!login) {
             Log.d(TAG, "AdminActivity onResume 一開始檢查未登入");
-            Intent intent = new Intent(AdminActivity.this, LoginActivity.class);
+            Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
         }
     }

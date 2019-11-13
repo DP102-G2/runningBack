@@ -38,8 +38,6 @@ public class UserFragment extends Fragment {
     private List<User> users;
     private CommonTask userGetAllTask;
 
-
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

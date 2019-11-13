@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_adFragment_to_promotionFragment"
             app:destination="@id/promotionFragment" />
+        <action
+            android:id="@+id/action_adFragment_to_userFragment"
+            app:destination="@id/userFragment" />
     </fragment>
     <fragment
         android:id="@+id/userFragment"

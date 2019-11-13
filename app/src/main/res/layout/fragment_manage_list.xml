@@ -2,79 +2,9 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     tools:context=".ManageListFragment">
-
-    <SearchView
-        android:id="@+id/fmSearch"
-        android:layout_width="312dp"
-        android:layout_height="38dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="40dp"
-        android:iconifiedByDefault="false"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-    </SearchView>
-
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/fmsR"
-        android:layout_width="404dp"
-        android:layout_height="600dp"
-        android:layout_margin="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.428"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fmno">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvEmployee"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
-    <TextView
-        android:id="@+id/fmemployeename"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="34dp"
-        android:layout_marginTop="13dp"
-        android:layout_marginEnd="318dp"
-        android:text="員工姓名"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/fmno"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="6dp"
-        android:text="編號"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fmSearch" />
-
-    <TextView
-        android:id="@+id/fmname"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="75dp"
-        android:layout_marginTop="5dp"
-        android:text="姓名"
-        app:layout_constraintStart_toEndOf="@+id/fmno"
-        app:layout_constraintTop_toBottomOf="@+id/fmSearch" />
-
-    <TextView
-        android:id="@+id/fmjob"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="160dp"
-        android:text="職務"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fmSearch" />
 
     <ImageView
         android:id="@+id/btAdd"
@@ -90,6 +20,74 @@
         app:layout_constraintStart_toEndOf="@+id/fmSearch"
         app:layout_constraintTop_toTopOf="@+id/fmSearch"
         app:rippleColor="#FFFFFF" />
+
+    <SearchView
+        android:id="@+id/fmSearch"
+        android:layout_width="312dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/sreach_style"
+        android:iconifiedByDefault="false"
+        android:queryHint="員工姓名"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </SearchView>
+
+    <TextView
+        android:id="@+id/fmno"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:text="編號"
+        app:layout_constraintStart_toStartOf="@+id/rvEmployee"
+        app:layout_constraintTop_toBottomOf="@+id/fmSearch" />
+
+    <TextView
+        android:id="@+id/fmname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="150dp"
+        android:layout_marginTop="5dp"
+        android:text="姓名"
+        app:layout_constraintStart_toStartOf="@+id/rvEmployee"
+        app:layout_constraintTop_toBottomOf="@+id/fmSearch" />
+
+    <TextView
+        android:id="@+id/fmjob"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="50dp"
+        android:text="職務"
+        app:layout_constraintEnd_toEndOf="@+id/rvEmployee"
+        app:layout_constraintTop_toBottomOf="@+id/fmSearch" />
+
+    <TextView
+        android:id="@+id/fmemployeename"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="34dp"
+        android:layout_marginTop="13dp"
+        android:layout_marginEnd="318dp"
+        android:text="員工姓名"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvEmployee"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fmname" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

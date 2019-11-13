@@ -3,6 +3,8 @@ package com.g2.runningback;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -23,6 +25,7 @@ import android.widget.ImageView;
 import com.g2.runningback.Common.Common;
 import com.g2.runningback.Common.CommonTask;
 import com.g2.runningback.Common.ImageTask;
+import com.g2.runningback.User.UserFragment;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
@@ -31,6 +34,7 @@ import java.lang.reflect.Type;
 import java.util.List;
 
 import static android.content.ContentValues.TAG;
+import static android.content.Context.MODE_PRIVATE;
 
 
 public class AdFragment extends Fragment {
@@ -49,8 +53,6 @@ public class AdFragment extends Fragment {
         mainActivity = (MainActivity) getActivity();
     }
 
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -67,13 +69,6 @@ public class AdFragment extends Fragment {
         recyclerView.setAdapter(new AdFragment.AdproductAdapter(activity, adproducts));
         adproducts = getAdproducts();
         showAdproducts(adproducts);
-        Button btnewproductnext = view.findViewById(R.id.btPromotionProduct);
-        btnewproductnext.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(v).navigate(R.id.action_adFragment_to_promotionFragment);
-            }
-        });
 
     }
 
@@ -182,4 +177,6 @@ public class AdFragment extends Fragment {
 
 
     }
+
+
 }
