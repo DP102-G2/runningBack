@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_adFragment_to_userFragment"
             app:destination="@id/userFragment" />
+        <action
+            android:id="@+id/action_adFragment_to_adupdateFragment"
+            app:destination="@id/adupdateFragment" />
     </fragment>
     <fragment
         android:id="@+id/userFragment"
@@ -55,7 +58,11 @@
         android:id="@+id/promotionFragment"
         android:name="com.g2.runningback.PromotionFragment"
         android:label="fragment_promotion"
-        tools:layout="@layout/fragment_promotion" />
+        tools:layout="@layout/fragment_promotion" >
+        <action
+            android:id="@+id/action_promotionFragment_to_promotionupdateFragment"
+            app:destination="@id/promotionupdateFragment" />
+    </fragment>
     <fragment
         android:id="@+id/productInsertFragment3"
         android:name="com.g2.runningback.prod.ProductInsertFragment"
@@ -98,5 +105,15 @@
         android:name="com.g2.runningback.User.UserDetailFragment"
         android:label="fragment_user_detail"
         tools:layout="@layout/fragment_user_detail" />
+    <fragment
+        android:id="@+id/promotionupdateFragment"
+        android:name="com.g2.runningback.PromotionupdateFragment"
+        android:label="fragment_promotionupdate"
+        tools:layout="@layout/fragment_promotionupdate" />
+    <fragment
+        android:id="@+id/adupdateFragment"
+        android:name="com.g2.runningback.AdupdateFragment"
+        android:label="fragment_adupdate"
+        tools:layout="@layout/fragment_adupdate" />
 
 </navigation>
