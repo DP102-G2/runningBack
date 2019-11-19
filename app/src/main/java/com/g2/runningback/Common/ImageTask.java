@@ -20,7 +20,7 @@ public class ImageTask extends AsyncTask<Object, Integer, Bitmap> {
 
     private final static String TAG = "ImageTask";
     private String url;
-    private int id, imageSize;
+    private int id, imageSize,ad_no;
     private String pro_no;
     /* ImageTask的屬性strong參照到SpotListFragment內的imageView不好，
     會導致SpotListFragment進入背景時imageView被參照而無法被釋放，
@@ -32,6 +32,18 @@ public class ImageTask extends AsyncTask<Object, Integer, Bitmap> {
         this.url = url;
         this.pro_no = pro_no;
         this.imageSize = imageSize;
+    }
+
+    public ImageTask(String url, int ad_no, int imageSize) {
+        this(url, ad_no, imageSize, null);
+    }
+
+    public ImageTask(String url, int ad_no, int imageSize, ImageView imageView) {
+        this.url = url;
+        this.ad_no = ad_no;
+        this.imageSize = imageSize;
+        this.imageViewWeakReference = new WeakReference<>(imageView);
+
     }
 
     public ImageTask(String url, String pro_no, int imageSize, ImageView imageView) {
@@ -48,6 +60,7 @@ public class ImageTask extends AsyncTask<Object, Integer, Bitmap> {
         jsonObject.addProperty("action", "getImage");
         jsonObject.addProperty("id", id);
         jsonObject.addProperty("pro_no",pro_no);
+        jsonObject.addProperty("ad_no",ad_no);
         jsonObject.addProperty("imageSize", imageSize);
         return getRemoteImage(url, jsonObject.toString());
     }
