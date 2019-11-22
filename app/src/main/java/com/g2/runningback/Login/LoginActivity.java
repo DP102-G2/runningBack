@@ -1,6 +1,7 @@
 package com.g2.runningback.Login;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.AttributeSet;
@@ -15,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.g2.runningback.Common.Common;
 import com.g2.runningback.Common.CommonTask;
+import com.g2.runningback.MainActivity;
 import com.g2.runningback.R;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -24,6 +26,7 @@ import static android.content.ContentValues.TAG;
 public class LoginActivity extends AppCompatActivity {
 
     private EditText etId,etPassword;
+    int job_no;
     private Button loginbtLogin;
 
     @Override
@@ -41,9 +44,10 @@ public class LoginActivity extends AppCompatActivity {
                 String id = etId.getText().toString();
                 String password = etPassword.getText().toString();
 
+
                 if(Common.networkConnected(LoginActivity.this)){
                     String url = Common.URL_SERVER+"LoginServlet";
-                    Login login = new Login(id,password);
+                    Login login = new Login(id,password,job_no);
                     JsonObject jsonObject = new JsonObject();
                     jsonObject.addProperty("action","getLogin");
                     jsonObject.addProperty("login",new Gson().toJson(login));
@@ -70,6 +74,8 @@ public class LoginActivity extends AppCompatActivity {
                         SharedPreferences pref = getSharedPreferences("preference",
                                 MODE_PRIVATE);
 
+                        pref.edit().putInt("job_no",mLogin.getJob_no()).apply();
+                        Log.d(TAG, "LoginActivity的job_no是多少"+ mLogin.getJob_no());
                         pref.edit()
                                 .putBoolean("isSignIn", true)
                                 .apply();

@@ -10,6 +10,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import java.sql.Timestamp;
+import java.util.Calendar;
 
 public class Common {
     public static String URL_SERVER = "http://10.0.2.2:8080/RunningWeb/";
@@ -39,5 +40,28 @@ public class Common {
 
         return gson;
     }
+
+    public static String getDay(Timestamp timestamp) {
+
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(timestamp);
+        cal.add(Calendar.MONTH, 1);
+
+        cal.setFirstDayOfWeek(Calendar.MONDAY);
+        String day = "";
+        String month = "";
+        if (cal.get(Calendar.DAY_OF_MONTH) < 10) {
+            day += "0";
+        }
+        if (cal.get(Calendar.MONTH) < 10) {
+            month += "0";
+        }
+        day += String.valueOf(cal.get(Calendar.DAY_OF_MONTH));
+        month += cal.get(Calendar.MONTH);
+        String dayStr = month + "/" + day;
+
+        return dayStr;
+    }
+
 
 }

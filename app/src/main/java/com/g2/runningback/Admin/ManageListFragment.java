@@ -11,9 +11,6 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
-
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -39,7 +36,6 @@ import java.util.List;
 import static androidx.constraintlayout.widget.Constraints.TAG;
 
 public class ManageListFragment extends Fragment {
-    private SwipeRefreshLayout swipeRefreshLayout;
     private RecyclerView rvManage;
     private Activity activity;
     private List<Manage> manages;
@@ -63,61 +59,51 @@ public class ManageListFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        SearchView searchView = view.findViewById(R.id.fmSearch);
-        swipeRefreshLayout = view.findViewById(R.id.fmsR);
-        rvManage = view.findViewById(R.id.rvEmployee);
+                super.onViewCreated(view, savedInstanceState);
+                SearchView searchView = view.findViewById(R.id.fmSearch);
+                rvManage = view.findViewById(R.id.rvEmployee);
 
-        rvManage.setLayoutManager(new LinearLayoutManager(activity));
-        manages = getManagess();
-        showManages(manages);
-
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                swipeRefreshLayout.setRefreshing(true);
+                rvManage.setLayoutManager(new LinearLayoutManager(activity));
+                manages = getManagess();
                 showManages(manages);
-                swipeRefreshLayout.setRefreshing(false);
-                Log.d(TAG, "swipeRefreshLayout: " + swipeRefreshLayout);
-            }
-        });
 
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextChange(String newText) {
+                searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                    @Override
+                    public boolean onQueryTextChange(String newText) {
 
-                // 如果搜尋條件為空字串，就顯示原始資料；否則就顯示搜尋後結果
-                if (newText.isEmpty()) {
-                    showManages(manages);
-                } else {
-                    List<Manage> searchSpots = new ArrayList<>();
-                    // 搜尋原始資料內有無包含關鍵字(不區別大小寫)
-                    for (Manage manage : manages) {
-                        if (manage.getEmp_name().toUpperCase().contains(newText.toUpperCase())) {
-                            searchSpots.add(manage);
+                        // 如果搜尋條件為空字串，就顯示原始資料；否則就顯示搜尋後結果
+                        if (newText.isEmpty()) {
+                            showManages(manages);
+                        } else {
+                            List<Manage> searchSpots = new ArrayList<>();
+                            // 搜尋原始資料內有無包含關鍵字(不區別大小寫)
+                            for (Manage manage : manages) {
+                                if (manage.getEmp_name().toUpperCase().contains(newText.toUpperCase())) {
+                                    searchSpots.add(manage);
+                                }
+                            }
+                            showManages(searchSpots);
                         }
+                        return true;
                     }
-                    showManages(searchSpots);
-                }
-                return true;
-            }
 
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
-            }
-        });
+                    @Override
+                    public boolean onQueryTextSubmit(String query) {
+                        return false;
+                    }
+                });
 
-        ImageView btAdd = view.findViewById(R.id.btAdd);
-        btAdd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Navigation.findNavController(view)
-                        .navigate(R.id.action_manageListFragment_to_manageInsertFragment);
-            }
-        });
+                ImageView btAdd = view.findViewById(R.id.btAdd);
+                btAdd.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Navigation.findNavController(view)
+                                .navigate(R.id.action_manageListFragment_to_manageInsertFragment);
+                    }
+                });
+
+
     }
-
     private List<Manage> getManagess() {
         List<Manage> manages = null;
         if (Common.networkConnected(activity)) {

@@ -119,9 +119,9 @@ public class ManageUpdateFragment extends Fragment {
                         Log.e(TAG, e.toString());
                     }
                     if (count == 0) {
-                        Common.showToast(getActivity(), "update fail");
+                        Common.showToast(getActivity(), "更新失敗");
                     } else {
-                        Common.showToast(getActivity(), "update success");
+                        Common.showToast(getActivity(), "更新成功");
                         /* 回前一個Fragment */
                         navController.popBackStack();
                     }

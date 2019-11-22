@@ -19,6 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.g2.runningback.Common.Common;
 import com.g2.runningback.Common.CommonTask;
@@ -91,11 +92,13 @@ public class PromotionFragment extends Fragment {
         }
 
         class MyViewHolder extends RecyclerView.ViewHolder {
-            EditText pro_no;
+            TextView pro_no;
+            TextView tvnumber;
 
             MyViewHolder(View itemView) {
                 super(itemView);
                 pro_no = itemView.findViewById(R.id.proItem_tvNo);
+                tvnumber=itemView.findViewById(R.id.tvnumber);
             }
         }
 
@@ -114,7 +117,21 @@ public class PromotionFragment extends Fragment {
         @Override
         public void onBindViewHolder(@NonNull final MyViewHolder viewHolder, final int postion) {
             final Promotion promotion = promotions.get(postion);
+            int prom_no = (postion < 4) ? 0 + (postion + 1) : (postion + 1);
+            viewHolder.tvnumber.setText(String.valueOf(prom_no));
             viewHolder.pro_no.setText(String.valueOf(promotion.getPro_no()));
+
+            viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int prom_no = (postion < 4) ? 0 + (postion + 1) : (postion + 1);
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("promotion", promotion);
+                    bundle.putSerializable("prom_no", prom_no);
+                    Navigation.findNavController(view)
+                            .navigate(R.id.action_promotionFragment_to_promotionupdateFragment, bundle);
+                }
+            });
 
         }
     }
@@ -164,7 +181,6 @@ public class PromotionFragment extends Fragment {
             promotionGetAllTask.cancel(true);
             promotionGetAllTask = null;
         }
-
 
 
     }

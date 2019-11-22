@@ -19,6 +19,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.g2.runningback.Common.Common;
 import com.g2.runningback.Common.CommonTask;
@@ -48,8 +49,6 @@ public class AdFragment extends Fragment {
         activity = getActivity();
         mainActivity = (MainActivity) getActivity();
     }
-
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -98,7 +97,7 @@ public class AdFragment extends Fragment {
         }
 
         class MyViewHolder extends RecyclerView.ViewHolder {
-            EditText pro_no;
+            TextView pro_no;
             ImageView ad_image;
 
             MyViewHolder(View itemView) {
@@ -121,12 +120,25 @@ public class AdFragment extends Fragment {
         @Override
         public void onBindViewHolder(@NonNull final MyViewHolder viewHolder, final int postion) {
             final Adproduct adproduct = adproducts.get(postion);
+            int ad_no = (postion < 3)? 0+(postion+1) : (postion+1);
             String url = Common.URL_SERVER + "adproductServlet";
-            String pro_no = adproduct.getPro_no();
-            adproductImageTask = new ImageTask(url, pro_no, imageSize, viewHolder.ad_image);
+            adproductImageTask = new ImageTask(url, ad_no, imageSize, viewHolder.ad_image);
             adproductImageTask.execute();
             viewHolder.pro_no.setText(String.valueOf(adproduct.getPro_no()));
-            //     viewHolder.ad_image.setImageResource(adproduct.getAd_image());
+
+            viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int ad_no = (postion < 3) ? 0 + (postion + 1) : (postion + 1);
+
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("adproduct", adproduct);
+                    bundle.putSerializable("ad_no", ad_no);
+                    Navigation.findNavController(view)
+                            .navigate(R.id.action_adFragment_to_adupdateFragment, bundle);
+                }
+            });
+
         }
     }
 

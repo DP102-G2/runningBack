@@ -22,6 +22,8 @@
     <string name="textUpdateFail">修改失敗</string>
     <string name="textUpdateSuccess">修改成功</string>
     <string name="product_no">商品編號</string>
+    <string name="textNoAdproductsFound">找不到商品</string>
+    <string name="textNoCameraApp">找不到camera</string>
 
 
     <string-array name="textFoodArray">
