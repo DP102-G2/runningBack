@@ -20,7 +20,6 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.SearchView;
@@ -29,7 +28,6 @@ import android.widget.TextView;
 import com.g2.runningback.Common.Common;
 import com.g2.runningback.Common.CommonTask;
 import com.g2.runningback.R;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
@@ -37,8 +35,6 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.g2.runningback.Admin.Manage;
 
 import static androidx.constraintlayout.widget.Constraints.TAG;
 
@@ -180,9 +176,9 @@ public class ManageListFragment extends Fragment {
 
             MyViewHolder(View itemView) {
                 super(itemView);
-                tvEmp_no = itemView.findViewById(R.id.tvEmp_no);
-                tvEmp_name = itemView.findViewById(R.id.tvEmp_name);
-                tvjob_name = itemView.findViewById(R.id.tvjob_name);
+                tvEmp_no = itemView.findViewById(R.id.tsproduct_number);
+                tvEmp_name = itemView.findViewById(R.id.tsproduct_name);
+                tvjob_name = itemView.findViewById(R.id.tstreatment_status);
             }
         }
 

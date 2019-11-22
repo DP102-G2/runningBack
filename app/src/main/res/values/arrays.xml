@@ -6,5 +6,6 @@
         <item>客服</item>
         <item>商品部</item>
     </string-array>
+    <string-array name="tsprocessing_situation">tsprocessing_situation</string-array>
 
 </resources>
