@@ -23,6 +23,45 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
+                <ImageView
+                    android:id="@+id/proUpdate_ivMain"
+                    android:layout_width="250dp"
+                    android:layout_height="250dp"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginEnd="32dp"
+                    android:src="@drawable/pro_image"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/proUpdate_ivOne"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="19dp"
+                    android:src="@drawable/pro_image"
+                    app:layout_constraintStart_toStartOf="@+id/proUpdate_ivMain"
+                    app:layout_constraintTop_toBottomOf="@+id/proUpdate_ivMain" />
+
+                <ImageView
+                    android:id="@+id/proUpdate_ivTwo"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/pro_image"
+                    app:layout_constraintEnd_toStartOf="@+id/proUpdate_ivThree"
+                    app:layout_constraintStart_toEndOf="@+id/proUpdate_ivOne"
+                    app:layout_constraintTop_toTopOf="@+id/proUpdate_ivOne" />
+
+                <ImageView
+                    android:id="@+id/proUpdate_ivThree"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/pro_image"
+                    app:layout_constraintBottom_toBottomOf="@+id/proUpdate_ivOne"
+                    app:layout_constraintEnd_toEndOf="@+id/proUpdate_ivMain"
+                    app:layout_constraintTop_toTopOf="@+id/proUpdate_ivOne" />
+
                 <EditText
                     android:id="@+id/proUpdate_etStock"
                     android:layout_width="240dp"
@@ -111,7 +150,7 @@
                     android:layout_marginTop="24dp"
                     android:text="類別名稱"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toBottomOf="@+id/proUpdate_ivOne" />
 
                 <TextView
                     android:id="@+id/proUpdate_tvNo"

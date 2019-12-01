@@ -1,4 +1,4 @@
-package com.g2.runningback;
+package com.g2.runningback.AD;
 
 
 import android.app.Activity;
@@ -33,6 +33,7 @@ import android.widget.PopupMenu;
 import com.g2.runningback.Common.Common;
 import com.g2.runningback.Common.CommonTask;
 import com.g2.runningback.Common.ImageTask;
+import com.g2.runningback.R;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 

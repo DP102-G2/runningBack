@@ -1,37 +1,30 @@
-package com.g2.runningback;
-
+package com.g2.runningback.Order;
 
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.service.autofill.TextValueSanitizer;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.PopupMenu;
 import android.widget.SearchView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.g2.runningback.Common.Common;
 import com.g2.runningback.Common.CommonTask;
-import com.g2.runningback.Common.TimestampTypeAdapter;
-import com.g2.runningback.prod.ProductFragment;
+import com.g2.runningback.Orderlist;
+import com.g2.runningback.R;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 
@@ -48,9 +41,9 @@ public class OrderFragment extends Fragment {
 
     private Activity activity;
     private RecyclerView recyclerView;
-    private List<Orderlist> orderlists;
+    private List<com.g2.runningback.Orderlist> orderlists;
     private CommonTask orderlistGetAllTask,OrderlistDeleteTask;
-    private  SearchView searchView;
+    private SearchView searchView;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -88,11 +81,11 @@ public class OrderFragment extends Fragment {
                         adapter.setOrderlists(orderlists);
                     } else {
 
-                        List<Orderlist> searchOrderlists = new ArrayList<>();
+                        List<com.g2.runningback.Orderlist> searchOrderlists = new ArrayList<>();
                         // 搜尋原始資料內有無包含關鍵字(不區別大小寫)
-                        for (Orderlist orderlist : orderlists) {
+                        for (com.g2.runningback.Orderlist orderlist : orderlists) {
                             if (String.valueOf(orderlist.getOrd_no()).equals(newText)) {
-                            searchOrderlists.add(orderlist);
+                                searchOrderlists.add(orderlist);
 
                                 Bundle bundle = new Bundle();
                                 bundle.putSerializable("orderlist", orderlist);
@@ -117,10 +110,10 @@ public class OrderFragment extends Fragment {
 
     private class OrderlistAdapter extends RecyclerView.Adapter<OrderlistAdapter.MyViewHolder> {
         private LayoutInflater layoutInflater;
-        List<Orderlist> orderlists;
+        List<com.g2.runningback.Orderlist> orderlists;
 
 
-        OrderlistAdapter(Context context, List<Orderlist> orderlists) {
+        OrderlistAdapter(Context context, List<com.g2.runningback.Orderlist> orderlists) {
             layoutInflater = LayoutInflater.from(context);
             //  this.context = context;
             this.orderlists = orderlists;
@@ -128,7 +121,7 @@ public class OrderFragment extends Fragment {
 
         }
 
-        void setOrderlists(List<Orderlist> orderlists) {
+        void setOrderlists(List<com.g2.runningback.Orderlist> orderlists) {
             this.orderlists = orderlists;
         }
 
@@ -153,14 +146,14 @@ public class OrderFragment extends Fragment {
 
         @NonNull
         @Override
-        public MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+        public OrderlistAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
             View itemView = layoutInflater.inflate(R.layout.item_view_order, viewGroup, false);
-            return new MyViewHolder(itemView);
+            return new OrderlistAdapter.MyViewHolder(itemView);
         }
 
         @Override
-        public void onBindViewHolder(@NonNull final MyViewHolder viewHolder, final int postion) {
-            final Orderlist orderlist = orderlists.get(postion);
+        public void onBindViewHolder(@NonNull final OrderlistAdapter.MyViewHolder viewHolder, final int postion) {
+            final com.g2.runningback.Orderlist orderlist = orderlists.get(postion);
             viewHolder.tsproduct_number.setText(String.valueOf(orderlist.getOrd_no()));
             viewHolder.tsproduct_name.setText(String.valueOf(orderlist.getUser_name()));
             viewHolder.tstreatment_status.setText(String.valueOf(orderlist.getord_statustText()));
@@ -202,7 +195,7 @@ public class OrderFragment extends Fragment {
                                             orderlists.remove(orderlist);
                                             OrderlistAdapter.this.notifyDataSetChanged();
                                             // 外面spots也必須移除選取的spot
-                                            OrderFragment.this.orderlists.remove(orderlist);
+                                        orderlists.remove(orderlist);
                                             Common.showToast(activity, "修改成功");
                                         }
                                     } else {
@@ -219,8 +212,8 @@ public class OrderFragment extends Fragment {
         }
     }
 
-    private List<Orderlist> getOrderlists() {
-        List<Orderlist> orderlists = null;
+    private List<com.g2.runningback.Orderlist> getOrderlists() {
+        List<com.g2.runningback.Orderlist> orderlists = null;
         if (Common.networkConnected(activity)) {
             Timestamp t = new Timestamp(System.currentTimeMillis());
             String url = Common.URL_SERVER + "/OrderlistServlet";
@@ -231,7 +224,7 @@ public class OrderFragment extends Fragment {
             try {
                 String jsonIn = orderlistGetAllTask.execute().get();
 //
-                Type listType = new TypeToken<List<Orderlist>>() {
+                Type listType = new TypeToken<List<com.g2.runningback.Orderlist>>() {
                 }.getType();
                 orderlists =new Gson().fromJson(jsonIn, listType);
             } catch (Exception e) {
@@ -249,7 +242,7 @@ public class OrderFragment extends Fragment {
             Common.showToast(activity, String.valueOf(R.string.textNoProductsFound));
             return;
         }
-        OrderlistAdapter orderlistAdapter = (OrderlistAdapter) recyclerView.getAdapter();
+       OrderlistAdapter orderlistAdapter = (OrderlistAdapter) recyclerView.getAdapter();
         // 如果spotAdapter不存在就建立新的，否則續用舊有的
         if (orderlistAdapter == null) {
             recyclerView.setAdapter(new OrderlistAdapter(activity, orderlists));
@@ -278,7 +271,6 @@ public class OrderFragment extends Fragment {
 
 
 }
-
 
 
 

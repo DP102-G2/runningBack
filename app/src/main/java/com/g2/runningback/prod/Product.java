@@ -15,6 +15,8 @@ public class Product implements Serializable {
     byte[] pro_image2;
     byte[] pro_image3;
 
+    public Product() {
+    }
 
     public void Clear(){
         pro_no="";
@@ -31,6 +33,13 @@ public class Product implements Serializable {
     }
 
     public Product(String pro_no, String cat_no, String pro_name, String pro_desc) {
+        this.pro_no = pro_no;
+        this.cat_no = cat_no;
+        this.pro_name = pro_name;
+        this.pro_desc = pro_desc;
+    }
+
+    public void savePage1(String pro_no, String cat_no, String pro_name, String pro_desc) {
         this.pro_no = pro_no;
         this.cat_no = cat_no;
         this.pro_name = pro_name;

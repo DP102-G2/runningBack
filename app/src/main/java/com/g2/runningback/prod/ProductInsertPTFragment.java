@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Switch;
 
@@ -82,7 +83,8 @@ public class ProductInsertPTFragment extends Fragment implements View.OnClickLis
         price = Integer.parseInt(etPrice.getText().toString().trim());
         stock = Integer.parseInt(etSotck.getText().toString().trim());
         proInfo = etProInfo.getText().toString().trim();
-        if (swSale.isClickable()) {
+        proSale =0;
+        if (swSale.isChecked()) {
             proSale = 1;
         } else {
             proSale = 0;
@@ -102,8 +104,7 @@ public class ProductInsertPTFragment extends Fragment implements View.OnClickLis
         btConfirm.setOnClickListener(this);
         btBack.setOnClickListener(this);
 
-
-    }
+            }
 
 
     private void getPref() {
@@ -179,6 +180,8 @@ public class ProductInsertPTFragment extends Fragment implements View.OnClickLis
                 }
                 break;
             case R.id.ispro2_btBack:
+                saveProData();
+                pref.edit().putString("Product", new Gson().toJson(product)).apply();
                 Navigation.findNavController(view).popBackStack();
                 break;
         }

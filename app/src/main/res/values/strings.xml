@@ -25,7 +25,6 @@
     <string name="textNoAdproductsFound">找不到商品</string>
     <string name="textNoCameraApp">找不到camera</string>
 
-
     <string-array name="textFoodArray">
         <item>未處理</item>
         <item>未出貨</item>
@@ -33,6 +32,6 @@
         <item>未送達</item>
         <item>已送達</item>
     </string-array>
+
+
 </resources>
-
-

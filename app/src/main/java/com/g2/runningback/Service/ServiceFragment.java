@@ -21,7 +21,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
+import android.widget.SearchView;
 import android.widget.TextView;
 
 import com.g2.runningback.Common.Common;
@@ -41,11 +41,14 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ServerFragment extends Fragment {
+public class ServiceFragment extends Fragment implements SearchView.OnQueryTextListener {
+
+    Gson gson;
 
     String socket_no = "0";
 
     MainActivity mainActivity;
+    SearchView sv;
 
     RecyclerView rv;
     View view;
@@ -53,15 +56,16 @@ public class ServerFragment extends Fragment {
     List<Message> messageList;
     CommonTask commonTask;
     messageAdaper messageAdaper;
-    private static final String url = Common.URL_SERVER + "ServerServlet";
+    private static final String url = Common.URL_SERVER + "ServiceServlet";
 
     private LocalBroadcastManager broadcastManager;
-    private static final String TAG = "TAG_ServerFragment";
+    private static final String TAG = "TAG_ServiceFragment";
 
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        gson = Common.getTimeStampGson();
         activity = getActivity();
 
         broadcastManager = LocalBroadcastManager.getInstance(activity);
@@ -91,12 +95,37 @@ public class ServerFragment extends Fragment {
 
 
     private void holdView() {
-
         rv = view.findViewById(R.id.server_ryList);
         rv.setLayoutManager(new LinearLayoutManager(activity));
         rv.setAdapter(new messageAdaper(activity, messageList));
-        messageAdaper = (ServerFragment.messageAdaper) rv.getAdapter();
+        messageAdaper = (ServiceFragment.messageAdaper) rv.getAdapter();
 
+        sv = view.findViewById(R.id.server_sv);
+        sv.setOnQueryTextListener(this);
+
+    }
+
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+
+        if (messageAdaper != null){
+            if (newText.isEmpty()){
+                messageAdaper.setMessages(messageList);
+            }else {
+                List<Message> svMessage = new ArrayList<>();
+                for (Message message : messageList){
+                    if (String.valueOf(message.user_no).contains(newText)){
+                        svMessage.add(message);
+                    }
+                }
+                messageAdaper.setMessages(svMessage);
+            }
+            messageAdaper.notifyDataSetChanged();
+            return true;
+        }
+
+        return false;
     }
 
 
@@ -170,7 +199,7 @@ public class ServerFragment extends Fragment {
         List<Message> messages = new ArrayList<>();
 
         JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("action", "getServerList");
+        jsonObject.addProperty("action", "getServiceList");
 
         commonTask = new CommonTask(url, jsonObject.toString());
 
@@ -203,7 +232,10 @@ public class ServerFragment extends Fragment {
     private BroadcastReceiver chatReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            String message = intent.getStringExtra("message");
+            String jsStr = intent.getStringExtra("message");
+            JsonObject jsonObject = gson.fromJson(jsStr,JsonObject.class);
+
+            String message = jsonObject.get("message").getAsString();
             // 拿到完整的資料
             messageList=getMessageList();
             messageAdaper.setMessages(messageList);
@@ -221,5 +253,8 @@ public class ServerFragment extends Fragment {
         // 否則回到前頁好友列表，會因為斷線而無法顯示好友
         broadcastManager.unregisterReceiver(chatReceiver);
     }
-
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        return false;
+    }
 }

@@ -1,6 +1,5 @@
 package com.g2.runningback;
 
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.DatePickerDialog;
@@ -11,13 +10,11 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
 
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,7 +22,6 @@ import android.widget.Toast;
 import com.g2.runningback.Common.Common;
 import com.g2.runningback.Common.CommonTask;
 import com.github.mikephil.charting.charts.PieChart;
-import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
@@ -38,7 +34,6 @@ import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -90,7 +85,6 @@ public class SaleFragment extends Fragment {
                 calendar.set(year2, month2, day2);
                 datePickerDialog.getDatePicker().setMaxDate(calendar.getTimeInMillis());
                 datePickerDialog.show();
-
             }
         });
 
@@ -109,7 +103,6 @@ public class SaleFragment extends Fragment {
                 calendarend.set(year, month, day);
                 datePickerDialog.getDatePicker().setMinDate(calendarend.getTimeInMillis());
                 datePickerDialog.show();
-
             }
         });
 
@@ -152,15 +145,14 @@ public class SaleFragment extends Fragment {
 
         showNow();
         saleList = getSaleList();
-
-        if (saleList.size() > 0) {
-            for (int i = 0; i <= saleList.size() - 1; i++) {
-                sumSales += saleList.get(i).getSumPrice();
+        if (saleList != null) {
+            if (saleList.size() > 0) {
+                for (int i = 0; i <= saleList.size() - 1; i++) {
+                    sumSales += saleList.get(i).getSumPrice();
+                }
             }
         }
-
         pieShow();
-
 }
 
     private void pieShow(){
@@ -242,7 +234,6 @@ public class SaleFragment extends Fragment {
                 .append(pad(month + 1)).append("-").append(pad(day)));
         sale_endTime.setText(new StringBuilder().append(year2).append("-")
                 .append(pad(month2 + 1)).append("-").append(pad(day2)));
-
     }
 
     private String pad(int number) {
@@ -257,7 +248,7 @@ public class SaleFragment extends Fragment {
         List<Sale> sales = new ArrayList<>();
 
         JsonObject jsonObject = new JsonObject();
-        SimpleDateFormat df = new SimpleDateFormat("yyyyMMddhhmmss");
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.S Z");
         calendar.set(year, month, day);
         String startDate = df.format(calendar.getTime());
         calendar.set(year2, month2, day2);
@@ -265,8 +256,8 @@ public class SaleFragment extends Fragment {
 
         String url = Common.URL_SERVER + "/SaleServlet";
         jsonObject.addProperty("action", "getAll");
-        jsonObject.addProperty("startDate", new Gson().toJson(startDate));
-        jsonObject.addProperty("endDate", new Gson().toJson(endDate));
+        jsonObject.addProperty("startDate", gson.toJson(startDate));
+        jsonObject.addProperty("endDate", gson.toJson(endDate));
         String jsonOut = jsonObject.toString();
 
         if (Common.networkConnected(activity)) {
@@ -276,7 +267,7 @@ public class SaleFragment extends Fragment {
                 Type listType = new TypeToken<List<Sale>>() {
                 }.getType();
                 Log.d(TAG, "jsonIn: " + jsonIn);
-                sales = new Gson().fromJson(jsonIn, listType);
+                sales = gson.fromJson(jsonIn, listType);
                 Log.d(TAG, "users" + sales);
             } catch (Exception e) {
                 Log.e(TAG, e.toString());
@@ -284,8 +275,6 @@ public class SaleFragment extends Fragment {
         } else {
             Common.showToast(activity, "no network connection available");
         }
-
-
         return sales;
     }
 

@@ -34,8 +34,7 @@ public class Common {
     public static Gson getTimeStampGson(){
 
         GsonBuilder gsonBuilder = new GsonBuilder();
-        gsonBuilder.setDateFormat("yyyyMMddhhmmss");
-        gsonBuilder.registerTypeAdapter(Timestamp.class, new TimestampTypeAdapter());
+        gsonBuilder.setDateFormat("yyyy-MM-dd hh:mm:ss.S Z");
         Gson gson = gsonBuilder.create();
 
         return gson;

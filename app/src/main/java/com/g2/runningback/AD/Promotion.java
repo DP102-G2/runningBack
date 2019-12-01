@@ -1,4 +1,4 @@
-package com.g2.runningback;
+package com.g2.runningback.AD;
 
 import java.io.Serializable;
 

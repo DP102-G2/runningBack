@@ -1,4 +1,4 @@
-package com.g2.runningback;
+package com.g2.runningback.AD;
 
 
 import android.app.Activity;
@@ -17,13 +17,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.g2.runningback.Common.Common;
 import com.g2.runningback.Common.CommonTask;
 import com.g2.runningback.Common.ImageTask;
+import com.g2.runningback.MainActivity;
+import com.g2.runningback.R;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;

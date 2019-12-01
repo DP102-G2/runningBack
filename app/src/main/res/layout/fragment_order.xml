@@ -24,10 +24,10 @@
         android:id="@+id/tsproduct_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="56dp"
         android:layout_marginTop="16dp"
-        android:text="編號"
         android:gravity="left"
+        android:text="編號"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/searchView" />
 
@@ -39,6 +39,7 @@
         android:layout_marginEnd="32dp"
         android:text="訂單編號"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -50,7 +51,7 @@
         android:gravity="center_vertical"
         android:text="會員姓名"
         app:layout_constraintEnd_toStartOf="@+id/treatment_status"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.622"
         app:layout_constraintStart_toEndOf="@+id/tsproduct_number"
         app:layout_constraintTop_toBottomOf="@+id/searchView" />
 
@@ -59,9 +60,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="32dp"
-        android:text="處理情況"
+        android:layout_marginEnd="56dp"
         android:gravity="right"
+        android:text="處理情況"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/searchView" />
 

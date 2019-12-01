@@ -67,7 +67,6 @@ public class MainActivity extends AppCompatActivity {
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.option_menu, menu);
         menu.removeItem(R.id.opMain);
-        menu.removeItem(R.id.opLogout);
         return true;
     }
 
@@ -75,6 +74,14 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
        Intent intent;
         switch (item.getItemId()) {
+            case R.id.opLogout:
+                SharedPreferences pref = getSharedPreferences("preference",
+                        MODE_PRIVATE);
+                pref.edit().putBoolean("isSignIn", false).apply();
+                Log.d(TAG, "AdminActivity 已登出");
+                intent = new Intent(this, LoginActivity.class);
+                startActivity(intent);
+                return true;
             case R.id.opAdmin:
                 intent = new Intent(this, AdminActivity.class);
                 startActivity(intent);

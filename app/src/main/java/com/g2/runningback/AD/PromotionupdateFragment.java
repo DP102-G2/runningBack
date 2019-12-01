@@ -1,38 +1,27 @@
-package com.g2.runningback;
+package com.g2.runningback.AD;
 
 
 import android.app.Activity;
-import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
-import android.os.Environment;
-import android.provider.MediaStore;
-import android.util.Base64;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.PopupMenu;
 
 import com.g2.runningback.Common.Common;
 import com.g2.runningback.Common.CommonTask;
-import com.g2.runningback.Common.ImageTask;
+import com.g2.runningback.R;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-
-import java.io.File;
 
 
 public class PromotionupdateFragment extends Fragment {

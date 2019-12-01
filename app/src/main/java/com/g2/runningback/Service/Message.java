@@ -3,7 +3,7 @@ package com.g2.runningback.Service;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class Message implements Serializable {
+public class Message {
 
     int msg_no;
     int user_no;
@@ -17,9 +17,10 @@ public class Message implements Serializable {
         this.msg_read = msg_read;
     }
 
-    public Message(int user_no, int msg_by, String msg_text, int msg_read) {
+    public Message(int user_no, int msg_by, String msg_text, int msg_read,Timestamp msg_time) {
         this.user_no = user_no;
         this.msg_by = msg_by;
+        this.msg_time = msg_time;
         this.msg_text = msg_text;
         this.msg_read = msg_read;
     }

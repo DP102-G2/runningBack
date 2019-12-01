@@ -11,6 +11,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -23,6 +24,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.SearchView;
 import android.widget.TextView;
 
 import com.g2.runningback.Common.Common;
@@ -36,15 +38,17 @@ import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
-public class ServerDetailFragment extends Fragment {
+public class ServiceDetailFragment extends Fragment {
 
     private LocalBroadcastManager broadcastManager;
     private String socket_no = "0";
-
 
     MainActivity mainActivity;
     Activity activity;
@@ -61,7 +65,7 @@ public class ServerDetailFragment extends Fragment {
     int user_no;
 
     CommonTask commonTask;
-    private static final String url = Common.URL_SERVER + "ServerServlet";
+    private static final String url = Common.URL_SERVER + "ServiceServlet";
     private static final String TAG = "TAG_ChatFragment";
 
 
@@ -139,8 +143,13 @@ public class ServerDetailFragment extends Fragment {
                 if (etMessage.getText().toString().equals("")) {
                     Common.showToast(activity, "請輸入文字訊息");
                 } else {
-                    insertMessage();
-                    pushToSocket();
+                    Date date = new Date();
+                    Timestamp msg_time = new Timestamp(date.getTime());
+
+                    String text = etMessage.getText().toString();
+                    Message message = new Message(user_no, 0, text, 0,msg_time);
+                    insertMessage(message);
+                    pushToSocket(message);
                 }
 
 
@@ -182,18 +191,22 @@ public class ServerDetailFragment extends Fragment {
             final Message message = messages.get(position);
             holder.tvText.setText(message.getMsg_text());
             if (message.getMsg_by() == 1) {
+                holder.tvWho.setVisibility(View.VISIBLE);
+                holder.tvWho.setText("會員編號: "+message.getUser_no());
                 holder.cardView.setCardBackgroundColor(activity.getColor(R.color.colorBrown));
-                holder.cardView.setTranslationX(0);
+                holder.csLayout.setTranslationX(0);
 
             } else {
+                holder.tvWho.setVisibility(View.GONE);
                 holder.cardView.setCardBackgroundColor(activity.getColor(R.color.colorPrimary));
-                holder.cardView.setTranslationX(imageSize - 800);
+                holder.csLayout.setTranslationX(imageSize - 800);
             }
 
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Common.showToast(activity, message.getMsg_by());
+                    String formatTS = new SimpleDateFormat("訊息時間： \n yyyy年 MM月 dd日 , HH點 mm分 ss秒").format(message.getMsg_time());
+                    Common.showToast(activity, formatTS);
                 }
             });
 
@@ -205,14 +218,16 @@ public class ServerDetailFragment extends Fragment {
         }
 
         private class messageViewHolder extends RecyclerView.ViewHolder {
-
+            ConstraintLayout csLayout;
             CardView cardView;
-            TextView tvText;
+            TextView tvText,tvWho;
 
             public messageViewHolder(View itemView) {
                 super(itemView);
+                csLayout = itemView.findViewById(R.id.serDetail_item_layout);
                 cardView = itemView.findViewById(R.id.serDetail_item_cardView);
                 tvText = itemView.findViewById(R.id.serDetail_item_tvText);
+                tvWho = itemView.findViewById(R.id.serDetail_item_tvWho);
             }
         }
     }
@@ -251,8 +266,10 @@ public class ServerDetailFragment extends Fragment {
     private BroadcastReceiver chatReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            String message = intent.getStringExtra("message");
-            // 拿到完整的資料
+            String jsStr = intent.getStringExtra("message");
+            JsonObject jsonObject = gson.fromJson(jsStr,JsonObject.class);
+
+            String message = jsonObject.get("message").getAsString();
             Message chatMessage = gson.fromJson(message, Message.class);
 
             if (chatMessage.getUser_no() == user_no) {
@@ -267,17 +284,16 @@ public class ServerDetailFragment extends Fragment {
         }
     };
 
-    private void pushToSocket() {
-        String text = etMessage.getText().toString();
-        Message message = new Message(user_no, 0, text, 1);
-        ServiceCommon.chatWebSocketClient.send(gson.toJson(message));
+    private void pushToSocket(Message message) {
+
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("action","new Message");
+        jsonObject.addProperty("message",gson.toJson(message));
+        ServiceCommon.chatWebSocketClient.send(jsonObject.toString());
     }
 
-    private void insertMessage() {
+    private void insertMessage(Message message) {
 
-        String text = etMessage.getText().toString();
-
-        Message message = new Message(user_no, 0, text, 1);
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("action", "insertMessage");
         jsonObject.addProperty("message", gson.toJson(message));

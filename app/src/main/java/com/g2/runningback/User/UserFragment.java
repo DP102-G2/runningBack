@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.SearchView;
 import android.widget.TextView;
 
@@ -37,6 +38,7 @@ public class UserFragment extends Fragment {
     private RecyclerView rvUser;
     private List<User> users;
     private CommonTask userGetAllTask;
+    private Button btService;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -52,11 +54,19 @@ public class UserFragment extends Fragment {
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         SearchView searchView = view.findViewById(R.id.userSearch);
         rvUser = view.findViewById(R.id.rvUser);
         rvUser.setLayoutManager(new LinearLayoutManager(activity));
+        btService = view.findViewById(R.id.user_btService);
+
+        btService.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(view).navigate(R.id.action_userFragment_to_serverFragment);
+            }
+        });
 
         users = getUsers();
         showUsers(users);

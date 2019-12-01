@@ -61,7 +61,7 @@ public class ProductInsertFragment extends Fragment implements View.OnClickListe
     int ImageNum = 1;
     byte[] img1, img2, img3;
     Uri contentUri;
-    Product product;
+    Product product = new Product();
 
     SharedPreferences pref;
     private final static String PREFERENCES_NAME = "preferences";
@@ -81,7 +81,6 @@ public class ProductInsertFragment extends Fragment implements View.OnClickListe
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         activity = getActivity();
-
         pref = activity.getSharedPreferences(PREFERENCES_NAME, MODE_PRIVATE);
     }
 
@@ -139,14 +138,6 @@ public class ProductInsertFragment extends Fragment implements View.OnClickListe
 
         ivTwo.setVisibility(View.GONE);
         ivThree.setVisibility(View.GONE);
-
-        btNextPage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(v).navigate(R.id.action_productInsertFragment3_to_productInsertPTFragment);
-            }
-        });
-
         ivOne.setOnClickListener(this);
         ivTwo.setOnClickListener(this);
         ivThree.setOnClickListener(this);
@@ -280,7 +271,9 @@ public class ProductInsertFragment extends Fragment implements View.OnClickListe
                 proCat = etProCat.getText().toString();
                 proName = etProName.getText().toString();
                 proDesc = etProDesc.getText().toString();
-                product = new Product(proNo, proCat, proName, proDesc);
+                product.savePage1(proNo, proCat, proName, proDesc);
+
+                savePref();
 
                 if (img1 != null) {
                     product.setPro_image(img1);
@@ -333,13 +326,17 @@ public class ProductInsertFragment extends Fragment implements View.OnClickListe
     @Override
     public void onPause() {
         super.onPause();
+        savePref();
+
+    }
 
 
+    private void savePref(){
         proNo = etProNo.getText().toString();
         proCat = etProCat.getText().toString();
         proName = etProName.getText().toString();
         proDesc = etProDesc.getText().toString();
-        product = new Product(proNo, proCat, proName, proDesc);
+        product.savePage1(proNo, proCat, proName, proDesc);
 
 
         if (img1 != null) {
@@ -352,11 +349,10 @@ public class ProductInsertFragment extends Fragment implements View.OnClickListe
             product.setPro_image3(img3);
         }
 
-
         pref.edit().putString("Product", new Gson().toJson(product)).apply();
 
-
     }
+
 
     private void takePic() {
 
@@ -485,7 +481,7 @@ public class ProductInsertFragment extends Fragment implements View.OnClickListe
     private void getPref() {
         String proStr = pref.getString("Product", "null");
         if (!proStr.equals("null")) {
-            Product product = new Gson().fromJson(proStr, Product.class);
+            product = new Gson().fromJson(proStr, Product.class);
 
             etProNo.setText(product.getPro_no());
             etProName.setText(product.getPro_name());
