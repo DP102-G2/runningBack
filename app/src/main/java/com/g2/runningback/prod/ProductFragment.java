@@ -132,7 +132,7 @@ public class ProductFragment extends Fragment {
         }
 
         class MyViewHolder extends RecyclerView.ViewHolder {
-            TextView pro_no, pro_name, pro_stock ,pro_Sale;
+            TextView pro_no, pro_name, pro_stock, pro_Sale;
 
             public MyViewHolder(View itemView) {
                 super(itemView);
@@ -162,11 +162,19 @@ public class ProductFragment extends Fragment {
             viewHolder.pro_name.setText(String.valueOf(product.getPro_name()));
             viewHolder.pro_stock.setText(String.valueOf(product.getPro_stock()));
 
-            if (product.getPro_Sale()==0){
-                viewHolder.pro_Sale.setTextColor(Color.RED);
+
+            if (product.getPro_stock() <= 0) {
+                viewHolder.pro_stock.setTextColor(Color.RED);
                 viewHolder.pro_Sale.setText("已下架");
-            }else {
-                viewHolder.pro_Sale.setTextColor(Color.BLACK);
+            } else {
+                viewHolder.pro_stock.setTextColor(Color.BLACK);
+            }
+
+            if (product.getPro_Sale() == 0) {
+                viewHolder.pro_Sale.setTextColor(Color.RED);
+
+            } else {
+                viewHolder.pro_Sale.setTextColor(Color.BLUE);
                 viewHolder.pro_Sale.setText("上架中");
             }
 
@@ -180,7 +188,6 @@ public class ProductFragment extends Fragment {
                 }
             });
         }
-
 
 
     }

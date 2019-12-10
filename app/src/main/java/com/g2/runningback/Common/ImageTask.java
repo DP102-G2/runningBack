@@ -103,7 +103,7 @@ public class ImageTask extends AsyncTask<Object, Integer, Bitmap> {
         if (bitmap != null) {
             imageView.setImageBitmap(bitmap);
         } else {
-            imageView.setImageResource(R.drawable.pro_image);
+            imageView.setImageResource(R.drawable.pro_image2);
         }
 
     }

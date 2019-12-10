@@ -14,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import com.g2.runningback.Admin.AdminActivity;
+import com.g2.runningback.Common.Common;
 import com.g2.runningback.Login.LoginActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -24,13 +25,15 @@ public class MainActivity extends AppCompatActivity {
     public BottomNavigationView btbar;
     private NavController navCtr;
     Intent intent;
+    int permission;
     @Override
     public void onStart() {
         super.onStart();
         // 從偏好設定檔中取得登入狀態來決定是否顯示「登出」
         SharedPreferences pref = getSharedPreferences("preference", MODE_PRIVATE);
         boolean login = pref.getBoolean("isSignIn", false);
-        int permission = pref.getInt("job_no",0);
+        permission = pref.getInt("job_no",0);
+        Common.showToast(this,"job_no= "+permission);
         Log.d(TAG, "Main Activity onStart 的isSignIn前");
         Menu menu = btbar.getMenu();
         if (!login) {
@@ -40,16 +43,29 @@ public class MainActivity extends AppCompatActivity {
         }
         else{
             switch(permission){
+                case 1:
+                    menu.findItem(R.id.productFragment).setVisible(true);
+                    menu.findItem(R.id.adFragment).setVisible(true);
+                    menu.findItem(R.id.saleFragment).setVisible(true);
+                    menu.findItem(R.id.userFragment).setVisible(true);
+                    menu.findItem(R.id.orderFragment).setVisible(true);
+                    break;
                 case 2:
-                    menu.removeItem(R.id.productFragment);
-                    menu.removeItem(R.id.adFragment);
-                    menu.removeItem(R.id.saleFragment);
+                    menu.findItem(R.id.userFragment).setVisible(true);
+                    menu.findItem(R.id.orderFragment).setVisible(true);
+                    menu.findItem(R.id.productFragment).setVisible(false);
+                    menu.findItem(R.id.adFragment).setVisible(false);
+                    menu.findItem(R.id.saleFragment).setVisible(false);
                     navCtr.navigate(R.id.userFragment);
                     break;
                 case 3:
-                    menu.removeItem(R.id.userFragment);
-                    menu.removeItem(R.id.orderFragment);
+                    menu.findItem(R.id.productFragment).setVisible(true);
+                    menu.findItem(R.id.adFragment).setVisible(true);
+                    menu.findItem(R.id.saleFragment).setVisible(true);
+                    menu.findItem(R.id.userFragment).setVisible(false);
+                    menu.findItem(R.id.orderFragment).setVisible(false);
                     break;
+
             }
         }
     }
@@ -67,6 +83,13 @@ public class MainActivity extends AppCompatActivity {
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.option_menu, menu);
         menu.removeItem(R.id.opMain);
+
+        if (permission!=1){
+            menu.findItem(R.id.opAdmin).setVisible(false);
+        }else {
+            menu.findItem(R.id.opAdmin).setVisible(true);
+        }
+
         return true;
     }
 
