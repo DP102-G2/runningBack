@@ -64,6 +64,17 @@ public class ManageInsertFragment extends Fragment {
             }
         });
 
+        Button filebt = view.findViewById(R.id.btFile);
+        filebt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                etNo.setText("4");
+                etName.setText("Tony");
+                etId.setText("45678");
+                etPassword.setText("45678");
+            }
+        });
+
         Button insertbtConfirm = view.findViewById(R.id.insertbtConfirm);
         insertbtConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
