@@ -41,7 +41,6 @@ import com.google.gson.JsonObject;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.List;
 
 
 public class ProductUpdateFragment extends Fragment implements View.OnClickListener {
@@ -107,7 +106,7 @@ public class ProductUpdateFragment extends Fragment implements View.OnClickListe
         ivOne.setOnClickListener(this);
 
         ivTwo = view.findViewById(R.id.proUpdate_ivTwo);
-        ivTwo.setImageResource(R.drawable.pro_image);
+        ivTwo.setImageResource(R.drawable.pro_image2);
         ivTwo.setOnClickListener(this);
 
         ivThree = view.findViewById(R.id.proUpdate_ivThree);
@@ -148,7 +147,7 @@ public class ProductUpdateFragment extends Fragment implements View.OnClickListe
             Bitmap bmImg2 = BitmapFactory.decodeByteArray(img2, 0, img2.length);
             ivTwo.setImageBitmap(bmImg2);
             ivThree.setVisibility(View.VISIBLE);
-            ivThree.setImageResource(R.drawable.pro_image);
+            ivThree.setImageResource(R.drawable.pro_image2);
         }
 
         if (img3 != null) {
@@ -431,7 +430,7 @@ public class ProductUpdateFragment extends Fragment implements View.OnClickListe
                                             ivMain.setImageDrawable(ivTwo.getDrawable());
                                             ivOne.setImageDrawable(ivTwo.getDrawable());
                                             ivTwo.setImageDrawable(ivThree.getDrawable());
-                                            ivThree.setImageResource(R.drawable.pro_image);
+                                            ivThree.setImageResource(R.drawable.pro_image2);
                                             break;
                                         }
                                         if (img2 != null) {
@@ -439,7 +438,7 @@ public class ProductUpdateFragment extends Fragment implements View.OnClickListe
                                             img2 = null;
                                             ivMain.setImageDrawable(ivTwo.getDrawable());
                                             ivOne.setImageDrawable(ivTwo.getDrawable());
-                                            ivTwo.setImageResource(R.drawable.pro_image);
+                                            ivTwo.setImageResource(R.drawable.pro_image2);
                                             ivThree.setVisibility(View.GONE);
                                             break;
 
@@ -447,8 +446,8 @@ public class ProductUpdateFragment extends Fragment implements View.OnClickListe
 
                                         if (img3 == null) {
                                             img1 = null;
-                                            ivMain.setImageResource(R.drawable.pro_image);
-                                            ivOne.setImageResource(R.drawable.pro_image);
+                                            ivMain.setImageResource(R.drawable.pro_image2);
+                                            ivOne.setImageResource(R.drawable.pro_image2);
                                             ivTwo.setVisibility(View.GONE);
                                             break;
                                         }
@@ -462,10 +461,10 @@ public class ProductUpdateFragment extends Fragment implements View.OnClickListe
                                             img2 = img3;
                                             img3 = null;
                                             ivTwo.setImageDrawable(ivThree.getDrawable());
-                                            ivThree.setImageResource(R.drawable.pro_image);
+                                            ivThree.setImageResource(R.drawable.pro_image2);
                                         } else {
                                             img2 = null;
-                                            ivTwo.setImageResource(R.drawable.pro_image);
+                                            ivTwo.setImageResource(R.drawable.pro_image2);
                                             ivThree.setVisibility(View.GONE);
                                         }
                                         ImageNum = 1;
@@ -477,7 +476,7 @@ public class ProductUpdateFragment extends Fragment implements View.OnClickListe
                                             break;
                                         } else {
                                             img3 = null;
-                                            ivThree.setImageResource(R.drawable.pro_image);
+                                            ivThree.setImageResource(R.drawable.pro_image2);
                                             ivMain.setImageDrawable(ivTwo.getDrawable());
                                         }
                                         ImageNum = 2;

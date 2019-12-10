@@ -162,9 +162,9 @@ public class ManageListFragment extends Fragment {
 
             MyViewHolder(View itemView) {
                 super(itemView);
-                tvEmp_no = itemView.findViewById(R.id.tsproduct_number);
-                tvEmp_name = itemView.findViewById(R.id.tsproduct_name);
-                tvjob_name = itemView.findViewById(R.id.tstreatment_status);
+                tvEmp_no = itemView.findViewById(R.id.tvEmp_no);
+                tvEmp_name = itemView.findViewById(R.id.tvEmp_name);
+                tvjob_name = itemView.findViewById(R.id.tvjob_name);
             }
         }
 

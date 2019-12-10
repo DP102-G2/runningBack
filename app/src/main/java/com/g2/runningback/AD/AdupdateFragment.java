@@ -193,7 +193,7 @@ public class AdupdateFragment extends Fragment {
         if (bitmap != null) {
             ad_image.setImageBitmap(bitmap);
         } else {
-            ad_image.setImageResource(R.drawable.pro_image);
+            ad_image.setImageResource(R.drawable.pro_image2);
         }
 
         proItem_tvNo.setText(String.valueOf(adproduct.getPro_no()));
